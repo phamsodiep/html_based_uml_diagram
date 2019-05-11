@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="html_based_uml_diagram" version="4">
+  <OBJECT>
+    <ID name="html_based_uml_diagram" mc="Standard.Package" uid="34e40a36-9635-4225-844a-36dfd100509d"/>
+    <PID name="html_based_uml_diagram" mc="Standard.Project" uid="2a127fb9-599c-42c9-a6cc-e005bb538d6d"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[html_based_uml_diagram]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="BA" mc="Standard.Package" uid="752c89ab-cea8-4cf2-9d7f-92d477a28f98"/>
+        <COMPID name="TA" mc="Standard.Package" uid="aa8233c8-b4f4-434e-8213-79756d793f2e"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

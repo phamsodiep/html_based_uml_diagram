@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Sequence Diagram Example 01.jpg" version="4">
+  <OBJECT>
+    <ID name="Sequence Diagram Example 01.jpg" mc="Standard.Artifact" uid="8f5b50ab-598d-4e9c-b97a-bf861b66d433"/>
+    <PID name="Diagram Examples" mc="Standard.Artifact" uid="8528d563-b741-433a-9480-17d4882e9fed"/>
+    <ATTRIBUTES>
+      <ATT name="FileName"><![CDATA[uml_artifacts/opentray_ucdesc_seq.jpg]]></ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Sequence Diagram Example 01.jpg]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <LINK relation="Extension">
+        <FOREIGNID name="file" mc="Infrastructure.Stereotype" uid="0226fd5c-caf5-4cb4-b25c-06e493b37b2d"/>
+      </LINK>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

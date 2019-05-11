@@ -1,0 +1,43 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="TA" version="4">
+  <OBJECT>
+    <ID name="TA" mc="Standard.Package" uid="aa8233c8-b4f4-434e-8213-79756d793f2e"/>
+    <PID name="html_based_uml_diagram" mc="Standard.Package" uid="34e40a36-9635-4225-844a-36dfd100509d"/>
+    <ATTRIBUTES>
+      <ATT name="IsInstantiable">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[TA]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Abstract Diagram" mc="Standard.Interface" uid="89474fa2-5828-4145-a77e-10c92cb46b47"/>
+        <COMPID name="Sprite Group" mc="Standard.Class" uid="146d648f-1a18-42b9-bfe4-d768f47c5be1"/>
+        <COMPID name="Render Element" mc="Standard.Interface" uid="7d79107e-1474-4b0f-9360-daedf16ac5b0"/>
+        <COMPID name="Class Diagram" mc="Standard.Class" uid="26f67355-4d89-4139-854a-a272d54ba627"/>
+        <COMPID name="Use case Diagram" mc="Standard.Class" uid="9a10c286-70fe-418c-9f07-a6e368303d80"/>
+        <COMPID name="Sequence Diagram" mc="Standard.Class" uid="da6ee82b-c373-4a79-9010-3781e01fa6ba"/>
+        <COMPID name="Client" mc="Standard.Actor" uid="c832f2a2-93d2-4af1-8f0d-2538c0dd6e2b"/>
+        <COMPID name="render" mc="Standard.UseCase" uid="0708dd68-ec79-4b4a-a625-7368080762a1"/>
+        <COMPID name="HTML5 Canvas" mc="Standard.Class" uid="194ea927-6754-4c59-9d2c-8d02917b96b1"/>
+        <COMPID name="Graphic2D Context" mc="Standard.Class" uid="c9d611d6-d444-4f75-b6cc-497565502a13"/>
+        <COMPID name="Render Request" mc="Standard.Class" uid="761d3217-f673-43a1-adfc-a227163c72aa"/>
+        <COMPID name="Sprite" mc="Standard.Interface" uid="3607ea16-698b-4ca4-ad94-c6d3a807610d"/>
+        <COMPID name="Compartment" mc="Standard.Class" uid="a2df3255-e779-4dfe-bcc1-f012a7b47151"/>
+        <COMPID name="Simple Label" mc="Standard.Class" uid="0aa782e1-e6c6-4952-8979-3e5d33cc9967"/>
+        <COMPID name="Caption Image" mc="Standard.Class" uid="4f37141c-be0b-46be-aff6-e238c9a90d4d"/>
+        <COMPID name="Activation Box" mc="Standard.Class" uid="4056e725-e2c4-4815-b942-3aec8d302384"/>
+        <COMPID name="Simple Image" mc="Standard.Class" uid="6e88efbf-d240-4f9e-babe-eee932ff3c54"/>
+        <COMPID name="Sprite Container" mc="Standard.Class" uid="e1be54c7-28d0-4789-8c16-9771f02c1c3b"/>
+        <COMPID name="Artifacts" mc="Standard.Artifact" uid="d85bb469-41dc-4992-a873-e73f3dc23d47"/>
+      </COMP>
+      <COMP relation="Product">
+        <COMPID name="ProposedSolution (static view)" mc="Standard.ClassDiagram" uid="be42a8e7-6068-483a-aa16-e69a2b74755f"/>
+        <COMPID name="TA Use Case diagram" mc="Standard.UseCaseDiagram" uid="016fc0f2-21d3-4528-be99-6a9db3b4e73f"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

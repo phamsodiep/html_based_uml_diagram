@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Diagram Examples" version="4">
+  <OBJECT>
+    <ID name="Diagram Examples" mc="Standard.Artifact" uid="8528d563-b741-433a-9480-17d4882e9fed"/>
+    <PID name="Artifacts" mc="Standard.Artifact" uid="d85bb469-41dc-4992-a873-e73f3dc23d47"/>
+    <ATTRIBUTES>
+      <ATT name="FileName"></ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Diagram Examples]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="OwnedElement">
+        <COMPID name="Sequence Diagram Example 01.jpg" mc="Standard.Artifact" uid="8f5b50ab-598d-4e9c-b97a-bf861b66d433"/>
+      </COMP>
+      <LINK relation="Extension">
+        <FOREIGNID name="directory" mc="Infrastructure.Stereotype" uid="6432b987-256f-4121-9428-a89d364c2cef"/>
+      </LINK>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
