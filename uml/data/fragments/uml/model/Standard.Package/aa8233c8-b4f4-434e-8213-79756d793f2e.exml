@@ -26,7 +26,6 @@
         <COMPID name="Graphic2D Context" mc="Standard.Class" uid="c9d611d6-d444-4f75-b6cc-497565502a13"/>
         <COMPID name="Render Request" mc="Standard.Class" uid="761d3217-f673-43a1-adfc-a227163c72aa"/>
         <COMPID name="Sprite" mc="Standard.Interface" uid="3607ea16-698b-4ca4-ad94-c6d3a807610d"/>
-        <COMPID name="Compartment" mc="Standard.Class" uid="a2df3255-e779-4dfe-bcc1-f012a7b47151"/>
         <COMPID name="Simple Label" mc="Standard.Class" uid="0aa782e1-e6c6-4952-8979-3e5d33cc9967"/>
         <COMPID name="Caption Image" mc="Standard.Class" uid="4f37141c-be0b-46be-aff6-e238c9a90d4d"/>
         <COMPID name="Activation Box" mc="Standard.Class" uid="4056e725-e2c4-4815-b942-3aec8d302384"/>
