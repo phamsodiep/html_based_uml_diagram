@@ -314,7 +314,7 @@
                   </COMP>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="driveTray" mc="Standard.BindableInstance" uid="2cc3154f-eec8-4d56-b9e1-3589d37d45b1"/>
+                      <ID name="driveTrayOpen" mc="Standard.BindableInstance" uid="2cc3154f-eec8-4d56-b9e1-3589d37d45b1"/>
                     </REFOBJ>
                   </LINK>
                   <COMP relation="Opposite">
@@ -381,7 +381,7 @@
                   </COMP>
                   <LINK relation="Target">
                     <REFOBJ>
-                      <ID name="driveTray" mc="Standard.BindableInstance" uid="4cd2a3e9-439e-4f96-bb94-4fd02522fa3d"/>
+                      <ID name="driveTrayStop" mc="Standard.BindableInstance" uid="4cd2a3e9-439e-4f96-bb94-4fd02522fa3d"/>
                     </REFOBJ>
                   </LINK>
                   <COMP relation="Opposite">
@@ -414,13 +414,13 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="driveTray" mc="Standard.BindableInstance" uid="2cc3154f-eec8-4d56-b9e1-3589d37d45b1"/>
+          <ID name="driveTrayOpen" mc="Standard.BindableInstance" uid="2cc3154f-eec8-4d56-b9e1-3589d37d45b1"/>
           <ATTRIBUTES>
             <ATT name="IsConstant">false</ATT>
             <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
             <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
             <ATT name="Value"></ATT>
-            <ATT name="Name"><![CDATA[driveTray]]></ATT>
+            <ATT name="Name"><![CDATA[driveTrayOpen]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -497,13 +497,13 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="driveTray" mc="Standard.BindableInstance" uid="4cd2a3e9-439e-4f96-bb94-4fd02522fa3d"/>
+          <ID name="driveTrayStop" mc="Standard.BindableInstance" uid="4cd2a3e9-439e-4f96-bb94-4fd02522fa3d"/>
           <ATTRIBUTES>
             <ATT name="IsConstant">false</ATT>
             <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
             <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
             <ATT name="Value"></ATT>
-            <ATT name="Name"><![CDATA[driveTray]]></ATT>
+            <ATT name="Name"><![CDATA[driveTrayStop]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
