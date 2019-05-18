@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="AngularJS" version="4">
+  <OBJECT>
+    <ID name="AngularJS" mc="Infrastructure.Profile" uid="569efd3e-07a7-49ae-87fe-f48a1fc34f13"/>
+    <PID name="LocalModule" mc="Infrastructure.ModuleComponent" uid="cd5ac4e9-8903-4195-8b8e-4624ee706818"/>
+    <ATTRIBUTES>
+      <ATT name="Name"><![CDATA[AngularJS]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DefinedStereotype">
+        <COMPID name="Component" mc="Infrastructure.Stereotype" uid="18236882-8b13-4290-93d9-edbe4006eb19"/>
+        <COMPID name="Directive" mc="Infrastructure.Stereotype" uid="d21870ab-cb08-4b1b-9ed6-3fa417c1bdfb"/>
+        <COMPID name="Service" mc="Infrastructure.Stereotype" uid="a8205f16-da88-4ecb-8478-cefb66796c55"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>

@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Directive" version="4">
+  <OBJECT>
+    <ID name="Directive" mc="Infrastructure.Stereotype" uid="d21870ab-cb08-4b1b-9ed6-3fa417c1bdfb"/>
+    <PID name="AngularJS" mc="Infrastructure.Profile" uid="569efd3e-07a7-49ae-87fe-f48a1fc34f13"/>
+    <ATTRIBUTES>
+      <ATT name="Image"><![CDATA[directive48.png]]></ATT>
+      <ATT name="Icon"><![CDATA[directive24.png]]></ATT>
+      <ATT name="IsHidden">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="LabelKey"><![CDATA[Directive]]></ATT>
+      <ATT name="BaseClassName"><![CDATA[Infrastructure.ModelElement]]></ATT>
+      <ATT name="Name"><![CDATA[Directive]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>
