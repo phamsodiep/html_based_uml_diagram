@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>
+            Html based uml diagram viewer test
+        </title>
+        <script src="js/angular.min.js"></script>
+        <script src="js/diepdiagram.js"></script>
+        <script>
+          var test = {};
+          test.data =  [
+            {
+              "class": "home",
+              "instance": "Dieppe"
+            },
+            {
+              "container": [
+                {
+                  "class": "home",
+                  "instance": "Outter"
+                },
+                {
+                  "class": "home",
+                  "instance": "Inner"
+                },
+              ]
+            },
+            {
+              "container": [
+                {
+                  "class": "home",
+                  "instance": "Final"
+                },
+                {
+                  "group": [
+                    {
+                      "class": "home",
+                      "instance": "G1"
+                    },
+                    {
+                      "class": "home",
+                      "instance": "G2"
+                    },
+                    {
+                      "container": [
+                        {
+                          "class": "home",
+                          "instance": "mostInnerContainer"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            },
+          ];
+          test.pageInit = function() {
+            let app = angular.module('blogEntryApp', ['diepRenderElement']);
+            app.controller("blogEntryCtrl", function($scope) {
+                $scope["name"] = "Jimmy";
+                $scope["m"] = test.data;
+            });
+            angular.element(function() {
+              angular.bootstrap(document, ['blogEntryApp']);
+            });
+            document.getElementById("loadOK").innerHTML="<b>Load OK</b>";
+          }
+        </script>
+    </head>
+
+    <body onload="test.pageInit()">
+        <div id="entry_article" ng-controller="blogEntryCtrl">
+            <div render-element='S' subclass="home" model="name">
+            </div>
+            <div render-element='G' model="m">
+            </div>
+            <div render-element='C'>
+            </div>
+            </div>
+            <div id="loadOK">
+            </div>
+        </div>
+    </body>
+</html>
+
