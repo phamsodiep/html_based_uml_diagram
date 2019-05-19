@@ -29,6 +29,9 @@
           </DEPENDENCIES>
         </OBJECT>
       </COMP>
+      <LINK relation="Extension">
+        <ID name="Component" mc="Infrastructure.Stereotype" uid="18236882-8b13-4290-93d9-edbe4006eb19"/>
+      </LINK>
       <COMP relation="Descriptor">
         <OBJECT>
           <ID name="Note" mc="Infrastructure.Note" uid="6b044729-55e9-4f4c-a7fb-02d756970391"/>

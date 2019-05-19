@@ -92,6 +92,9 @@
           </DEPENDENCIES>
         </OBJECT>
       </COMP>
+      <LINK relation="Extension">
+        <ID name="Directive" mc="Infrastructure.Stereotype" uid="d21870ab-cb08-4b1b-9ed6-3fa417c1bdfb"/>
+      </LINK>
     </DEPENDENCIES>
   </OBJECT>
 </EXT>

@@ -153,6 +153,9 @@
           </DEPENDENCIES>
         </OBJECT>
       </COMP>
+      <LINK relation="Extension">
+        <ID name="Directive" mc="Infrastructure.Stereotype" uid="d21870ab-cb08-4b1b-9ed6-3fa417c1bdfb"/>
+      </LINK>
       <COMP relation="Descriptor">
         <OBJECT>
           <ID name="Note" mc="Infrastructure.Note" uid="51ed2143-9b55-4ba0-95e5-a82481c200a3"/>

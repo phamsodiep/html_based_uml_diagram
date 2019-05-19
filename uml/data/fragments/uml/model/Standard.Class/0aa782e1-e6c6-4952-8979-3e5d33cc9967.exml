@@ -30,6 +30,9 @@
           </DEPENDENCIES>
         </OBJECT>
       </COMP>
+      <LINK relation="Extension">
+        <ID name="Component" mc="Infrastructure.Stereotype" uid="18236882-8b13-4290-93d9-edbe4006eb19"/>
+      </LINK>
       <COMP relation="Descriptor">
         <OBJECT>
           <ID name="Note" mc="Infrastructure.Note" uid="fc7faaf5-601f-496e-a27f-f5f9fc1889c5"/>
