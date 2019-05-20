@@ -1,11 +1,18 @@
-let renderElementModule = angular.module("diepRenderElement", []);
+let RenderElement = {};
+RenderElement.Module = angular.module("diepRenderElement", []);
+RenderElement.CONST = {};
+RenderElement.CONST.RE_ATT         = "render-element";
+RenderElement.CONST.RE_ATT_MODEL   = "renderElement";
+RenderElement.CONST.DATA_ATT       = "model";
+RenderElement.CONST.IMPL_CLASS_ATT = "subclass";
+
 
 // renderElement directive
-renderElementModule.directive("renderElement", function ($compile) {
-  const RE_ATT         = "render-element";
-  const RE_ATT_MODEL   = "renderElement";
-  const DATA_ATT       = "model";
-  const IMPL_CLASS_ATT = "subclass";
+RenderElement.Module.directive("renderElement", function ($compile) {
+  const RE_ATT         = RenderElement.CONST.RE_ATT;
+  const RE_ATT_MODEL   = RenderElement.CONST.RE_ATT_MODEL;
+  const DATA_ATT       = RenderElement.CONST.DATA_ATT;
+  const IMPL_CLASS_ATT = RenderElement.CONST.IMPL_CLASS_ATT;
   let dirScope = {};
   dirScope[DATA_ATT] = ("=" + DATA_ATT);
   return {
@@ -24,7 +31,7 @@ renderElementModule.directive("renderElement", function ($compile) {
         let spriteClass = $attrs[IMPL_CLASS_ATT];
         if (typeof spriteClass === "string") {
           templateStr = [
-            "<", spriteClass, " ", DATA_ATT, "=\"", DATA_ATT, "\">",
+            "<", spriteClass, " ", DATA_ATT, "=\"", DATA_ATT, ".instance\">",
             "</", spriteClass, ">"
           ].join("");
         }
@@ -45,43 +52,12 @@ renderElementModule.directive("renderElement", function ($compile) {
           for (let i = 0; i < reCount; i++) {
             let re = group[i];
             if (typeof re === "object") {
-              let dataAttributeSetting = "";
-              let spriteClass = re["class"];
-              // This element is a Sprite
-              if (typeof spriteClass === "string") {
-                let modelType = typeof re.instance;
-                if (modelType === "object" || modelType === "string") {
-                  dataAttributeSetting = [
-                    DATA_ATT, "=\"", DATA_ATT, "[", i, "].instance", "\""
-                  ].join("");
-                }
-                templateStrBuffer.push(
-                  "<div ", RE_ATT, "='S' ",
-                    IMPL_CLASS_ATT, "='", spriteClass, "'",
-                    dataAttributeSetting, ">",
-                  "</div>"
-                );
-              }
-              // This element is a Sprite Group
-              else if (Array.isArray(re.group)) {
-                dataAttributeSetting = [
-                  DATA_ATT, "=\"", DATA_ATT, "[", i, "].group", "\""
-                ].join("");
-                templateStrBuffer.push(
-                  "<div ", RE_ATT, "='G' ", dataAttributeSetting, ">",
-                  "</div>"
-                );
-              }
-              // This element is a Sprite Container
-              else if (Array.isArray(re.container)) {
-                dataAttributeSetting = [
-                  DATA_ATT, "=\"", DATA_ATT, "[", i, "].container", "\""
-                ].join("");
-                templateStrBuffer.push(
-                  "<div ", RE_ATT, "='C' ", dataAttributeSetting, ">",
-                  "</div>"
-                );
-              }
+              templateStrBuffer.push(
+                "<div ", RE_ATT, "='?' ",
+                  DATA_ATT, "=\"", DATA_ATT, "[", i, "]", "\"",
+                ">",
+                "</div>"
+              );
             }
           }
           templateStr =  templateStrBuffer.join("");
@@ -137,7 +113,7 @@ renderElementModule.directive("renderElement", function ($compile) {
           templateStrBuffer.push(
             "<div ", RE_ATT, "='S' ",
               IMPL_CLASS_ATT, "='", spriteClass, "'",
-                DATA_ATT, "=\"", DATA_ATT, ".instance\"",
+                DATA_ATT, "=\"", DATA_ATT, "\"",
             ">",
             "</div>"
           );
@@ -171,7 +147,7 @@ renderElementModule.directive("renderElement", function ($compile) {
 
 
 // home controller
-renderElementModule.component('home', {
+RenderElement.Module.component('home', {
   transclude: true,
   bindings: {
     model: '='
