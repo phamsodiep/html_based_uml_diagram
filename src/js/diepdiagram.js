@@ -146,6 +146,113 @@ RenderElement.Module.directive("renderElement", function ($compile) {
 });
 
 
+RenderElement.Module.component('diagram', {
+  transclude: false,
+  bindings: {
+    model: '<'
+  },
+  template: "",
+  controller: function ($scope, $element, $compile) {
+    let verifyDatasourceModel = function (model) {
+      if (typeof model === "undefined") {
+        return false;
+      }
+      const validTypes = {
+        "width":     "number",
+        "height":    "number"
+      };
+      const reSubClassTypes = {
+        "group":     "*",
+        "container": "*",
+        "class":     "string"
+      };
+      for (let key in validTypes) {
+        if (!(typeof model[key] === validTypes[key])) {
+          return false;
+        }
+      }
+      let isImplemented = false;
+      for (let key in reSubClassTypes) {
+        let implType = reSubClassTypes[key];
+        if (implType === "*") {
+          if (Array.isArray(model[key])) {
+            isImplemented = true;
+            break;
+          }
+        }
+        else {
+          if (typeof model[key] === implType) {
+            isImplemented = true;
+            break;
+          }
+        }
+      }
+      return isImplemented;
+    };
+    this.$postLink = function() {
+      if (!verifyDatasourceModel(this.model)) {
+        throw "Diagram data model format is invalid.";
+      }
+      const RE_ATT         = RenderElement.CONST.RE_ATT;
+      const DATA_ATT       = RenderElement.CONST.DATA_ATT;
+      let templateStr = [
+        "<div ng-style='{{$ctrl.wrapDivCss}}'>",
+            "<div ng-style='{{$ctrl.bgDivCss}}'>",
+                "<canvas></canvas>",
+            "</div>",
+            "<div ", RE_ATT, "='?' ng-style='{{$ctrl.fgDivCss}}' ",
+                DATA_ATT, "=\"$ctrl.", DATA_ATT, "\"",
+            ">",
+            "</div>",
+        "</div>"
+      ].join("");
+
+      // CSS
+      //alert(this.model.house);
+      // wrap div: position: relative
+      this.wrapDivCss = {
+        "position": "relative",
+        "width":    this.model.width + "px",
+        "height":    this.model.height + "px"
+      };
+      // background div: position: absolute
+      this.bgDivCss = {
+        "position": "absolute",
+        "z-index": "-1"
+      };
+
+      this.fgDivCss = {
+        "position": "absolute"
+      };
+
+
+      // DOM
+      let $templateRootElem = $compile(templateStr)($scope);
+      $element.append($templateRootElem);
+      let templateRootElem = angular.element($templateRootElem)[0];
+
+      // Retrieve canvas 2d context
+      let ctx = null;
+      let backgroundDivElem = templateRootElem.firstElementChild;
+      if (typeof backgroundDivElem === "object") {
+        let backgroundCanvasElem = backgroundDivElem.firstElementChild;
+        if (typeof backgroundCanvasElem === "object") {
+          backgroundCanvasElem.width = this.model.width;
+          backgroundCanvasElem.height = this.model.height;
+          ctx = backgroundCanvasElem.getContext("2d");
+          if (typeof ctx === "object"
+            && ctx.constructor.name === "CanvasRenderingContext2D"
+          ) {
+            this.canvas2DContext = ctx;
+          }
+        }
+        //let foregroundCanvasElem = templateRootElem.lastElementChild;
+      }
+    }
+  }
+});
+
+
 // home controller
 RenderElement.Module.component('home', {
   transclude: true,
