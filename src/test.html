@@ -11,42 +11,135 @@
           var test = {};
           test.data =  [
             {
-              "class": "home",
-              "instance": "Dieppe"
+              "class":    "caption-image",
+              "instance": {
+                "left":     12,
+                "top":      1,
+                "width":    120,
+                "height":   6,
+                "renderCmds": [
+                  [
+                    "<h4>Dieppe(12, 1)</h4>",
+                    0, 0, 120, 6
+                  ],
+                ]
+              }
             },
             {
               "container": [
                 {
-                  "class": "home",
-                  "instance": "Outter"
+                  "class": "caption-image",
+                  "instance": {
+                    "left":     240,
+                    "top":      64,
+                    "width":    120,
+                    "height":   6,
+                    "renderCmds": [
+                      [
+                        "<h4>Outter(240, 64)</h4>",
+                        0, 0, 120, 6
+                      ],
+                    ]
+                  }
                 },
                 {
-                  "class": "home",
-                  "instance": "Inner"
+                  "class": "caption-image",
+                  "instance": {
+                    "left":     12,
+                    "top":      64,
+                    "width":    120,
+                    "height":   6,
+                    "renderCmds": [
+                      [
+                        "<h4>Inner(12, 64)</h4>",
+                        0, 0, 120, 6
+                      ],
+                    ]
+                  }
                 },
               ]
             },
             {
               "container": [
                 {
-                  "class": "home",
-                  "instance": "Final"
+                  "class": "caption-image",
+                  "instance": {
+                    "left":     120,
+                    "top":      32,
+                    "width":    120,
+                    "height":   6,
+                    "renderCmds": [
+                      [
+                        "<h4>Outter2(120, 32)</h4>",
+                        0, 0, 120, 6
+                      ],
+                    ]
+                  }
                 },
                 {
                   "group": [
                     {
-                      "class": "home",
-                      "instance": "G1"
+                      "class": "caption-image",
+                      "instance": {
+                        "left":     120,
+                        "top":      100,
+                        "width":    120,
+                        "height":   6,
+                        "renderCmds": [
+                          [
+                            "<h4>G1(120, 100)</h4>",
+                            0, 0, 120, 6
+                          ],
+                        ]
+                      }
                     },
                     {
-                      "class": "home",
-                      "instance": "G2"
+                      "class": "caption-image",
+                      "instance": {
+                        "left":     120,
+                        "top":      200,
+                        "width":    120,
+                        "height":   6,
+                        "renderCmds": [
+                          [
+                            "<h4>G2(120, 200)</h4>",
+                            0, 100, 120, 6
+                          ],
+                          [
+                            "fillStyle",
+                            "#eeeeff"
+                          ],
+                          [
+                            "fillRect",
+                            [0, 0, 36, 92]
+                          ],
+                          [
+                            "fillStyle",
+                            "#ff0000"
+                          ],
+                          [
+                            "fillRect",
+                            [100, 10, 26, 26]
+                          ]
+                        ]
+                      }
                     },
                     {
                       "container": [
                         {
-                          "class": "home",
-                          "instance": "mostInnerContainer"
+                          "class": "caption-image",
+                          "instance": {
+                            "left":     240,
+                            "top":      150,
+                            "width":    250,
+                            "height":   26,
+                            "renderCmds": [
+                              [
+                                "<div style='text-align: center;'>mostInnerContainer(240, 150)</div>",
+                                0, 0, 200, 6
+                              ],
+                            ]
+                          }
                         }
                       ]
                     }
@@ -55,11 +148,22 @@
               ]
             },
           ];
+          test.diagramData = {
+            "root": {
+              "width":  640,
+              "height": 768,
+              "house":  "noname2",
+              "group":  test.data,
+            }
+          };
           test.pageInit = function() {
             let app = angular.module('blogEntryApp', ['diepRenderElement']);
             app.controller("blogEntryCtrl", function($scope) {
-                $scope["name"] = "Jimmy";
+                $scope["name"] = {
+                  instance: "Jimmy Teo"
+                };
                 $scope["m"] = test.data;
+                $scope["diagramData"] = test.diagramData;
             });
             angular.element(function() {
               angular.bootstrap(document, ['blogEntryApp']);
@@ -71,13 +175,16 @@
 
     <body onload="test.pageInit()">
         <div id="entry_article" ng-controller="blogEntryCtrl">
-            <div render-element='S' subclass="home" model="name">
+            <!-- div render-element='S' subclass="home" model="name">
             </div>
             <div render-element='G' model="m">
             </div>
             <div render-element='C'>
-            </div>
-            </div>
+            </div -->
+
+            <diagram model="diagramData.root">
+            </diagram>
+
             <div id="loadOK">
             </div>
         </div>

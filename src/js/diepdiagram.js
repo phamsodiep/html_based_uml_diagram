@@ -1,10 +1,33 @@
 let RenderElement = {};
 RenderElement.Module = angular.module("diepRenderElement", []);
+
+
+// Constants
 RenderElement.CONST = {};
 RenderElement.CONST.RE_ATT         = "render-element";
 RenderElement.CONST.RE_ATT_MODEL   = "renderElement";
 RenderElement.CONST.DATA_ATT       = "model";
 RenderElement.CONST.IMPL_CLASS_ATT = "subclass";
+
+
+// Helper functions
+RenderElement.util = {};
+RenderElement.util.dataModelValidator = function (model, expectedTypes) {
+  for (let key in expectedTypes) {
+    let expectedType = expectedTypes[key];
+    if (expectedType === "*") {
+      if (!(Array.isArray(model[key]))) {
+        return false;
+      }
+    }
+    else {
+      if (!(typeof model[key] === expectedType)) {
+        return false;
+      }
+    }
+  }
+  return true;
+};
 
 
 // renderElement directive
@@ -149,10 +172,73 @@ RenderElement.Module.directive("renderElement", function ($compile) {
 RenderElement.Module.component('diagram', {
   transclude: false,
   bindings: {
-    model: '<'
+    model: '='
   },
   template: "",
   controller: function ($scope, $element, $compile) {
+    let renderBackground = function (ctx, model) {
+      // Helper constants
+      const PROTO = CanvasRenderingContext2D.prototype;
+      const COORDINATE_CONVERT_NEED_FUNCS = [
+        "fillRect"
+      ];
+      // Helper converter function
+      let convertToGlobalCoordinate = function (
+        spriteLeft, spriteTop, operation, params
+      ) {
+        let funcList = COORDINATE_CONVERT_NEED_FUNCS;
+        if (funcList.includes(operation)) {
+          params[0] += spriteLeft;
+          params[1] += spriteTop;
+        }
+      }
+      // Helper data model traveling function
+      let dataModelTravel = function (node, callBackFunc) {
+        // Sprite data model is detected
+        if (typeof node["class"] === "string") {
+          if (typeof node.instance === "object"
+            && Array.isArray(node.instance.renderCmds)
+          ) {
+            callBackFunc(node.instance);
+          }
+        }
+        // Sprite Group data model is detected
+        else if (Array.isArray(node.group)) {
+          let reCount = node.group.length;
+          for (let i = 0; i < reCount; i++) {
+            dataModelTravel(node.group[i], callBackFunc);
+          }
+        }
+        // Sprite Container data model is detected
+        else if (Array.isArray(node.container)) {
+          let reCount = node.container.length;
+          for (let i = 0; i < reCount; i++) {
+            dataModelTravel(node.container[i], callBackFunc);
+          }
+        }
+      }
+      // Helper data model traveling function
+      let elementBackgroundRenderCallBackFunc = function (instance) {
+        let renderRequests = instance.renderCmds
+        let nRenderRequest = renderRequests.length;
+        for (let i = 1; i < nRenderRequest; i++) {
+          let renderRequest = renderRequests[i];
+          let op = renderRequest[0];
+          let params = renderRequest[1];
+          if (Array.isArray(params)) {
+            convertToGlobalCoordinate(instance.left, instance.top, op, params);
+            PROTO[op].apply(ctx, params);
+          }
+          else {
+            ctx[op] = params;
+          }
+        }
+      };
+      dataModelTravel(model, elementBackgroundRenderCallBackFunc);
+      // Do rendering
+      // ctx.fillStyle = "#eeeeee";
+      // ctx.fillRect(0, 0, 120, 120);
+    };
     let verifyDatasourceModel = function (model) {
       if (typeof model === "undefined") {
         return false;
@@ -189,7 +275,7 @@ RenderElement.Module.component('diagram', {
       }
       return isImplemented;
     };
-    this.$postLink = function() {
+    this.$onChanges = function (changesObj) {
       if (!verifyDatasourceModel(this.model)) {
         throw "Diagram data model format is invalid.";
       }
@@ -208,7 +294,6 @@ RenderElement.Module.component('diagram', {
       ].join("");
 
       // CSS
-      //alert(this.model.house);
       // wrap div: position: relative
       this.wrapDivCss = {
         "position": "relative",
@@ -243,7 +328,7 @@ RenderElement.Module.component('diagram', {
           if (typeof ctx === "object"
             && ctx.constructor.name === "CanvasRenderingContext2D"
           ) {
-            this.canvas2DContext = ctx;
+            renderBackground(ctx, this.model);
           }
         }
         //let foregroundCanvasElem = templateRootElem.lastElementChild;
@@ -254,13 +339,65 @@ RenderElement.Module.component('diagram', {
 
 
 // home controller
-RenderElement.Module.component('home', {
-  transclude: true,
+RenderElement.Module.component('captionImage', {
+  transclude: false,
   bindings: {
     model: '='
   },
-  template: '<h1>Home</h1><p>Hello, {{ $ctrl.model }} ! <div ng-transclude> </div> </p>',
-  controller: function () {
+  template: "",
+  controller: function ($scope, $element, $compile) {
+    let verifyDatasourceModel = function (model) {
+      if (typeof model === "undefined") {
+        return false;
+      }
+      const validTypes = {
+        "left":       "number",
+        "top":        "number",
+        "width":      "number",
+        "height":     "number",
+        "renderCmds": "*",
+      };
+      if (RenderElement.util.dataModelValidator(model, validTypes)) {
+        if (model.renderCmds.length > 0) {
+          let htmlTransformation = model.renderCmds[0];
+          let paramsCount = htmlTransformation.length;
+          if (paramsCount == 5) {
+            if (typeof htmlTransformation[0] === "string") {
+              for(let i = 1; i < paramsCount; i++) {
+                if (!(typeof htmlTransformation[i] === "number")) {
+                  return false;
+                }
+              }
+              return true;
+            }
+          }
+        }
+      }
+      return false
+    };
+    this.$onChanges = function (changesObj) {
+      if (!(verifyDatasourceModel(this.model))) {
+        throw "CaptionImage data model format is invalid.";
+      }
+      let htmlRenderCmd = this.model.renderCmds[0];
+      let templateStr = htmlRenderCmd[0];
+      let $templateRootElem = $compile(templateStr)($scope);
+      $element.append($templateRootElem);
+      let templateRootElem = angular.element($templateRootElem)[0];
+      templateRootElem.style.position = "absolute";
+      templateRootElem.style.left     =
+        this.model.left + htmlRenderCmd[1] + "px";
+      templateRootElem.style.top      =
+        this.model.top + htmlRenderCmd[2] + "px";
+
+      // width height should be adjust with borderWidth
+      templateRootElem.style.width    = htmlRenderCmd[3]  + "px";
+      templateRootElem.style.height   = htmlRenderCmd[4] + "px";
+      templateRootElem.style.borderWidth = "0px";
+      templateRootElem.style.borderStyle = "none";
+      templateRootElem.style.margin = "0px 0px 0px 0px";
+
+    }
   }
 });
 
