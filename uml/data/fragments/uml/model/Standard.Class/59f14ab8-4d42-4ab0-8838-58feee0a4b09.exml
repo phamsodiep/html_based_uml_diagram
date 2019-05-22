@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Activation Box" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Life Time" version="4">
   <OBJECT>
-    <ID name="Activation Box" mc="Standard.Class" uid="4056e725-e2c4-4815-b942-3aec8d302384"/>
-    <PID name="TA" mc="Standard.Package" uid="aa8233c8-b4f4-434e-8213-79756d793f2e"/>
+    <ID name="Life Time" mc="Standard.Class" uid="59f14ab8-4d42-4ab0-8838-58feee0a4b09"/>
+    <PID name="Renderer" mc="Standard.Package" uid="02f1696d-22b7-419f-8d27-d362a60cd4ab"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
       <ATT name="IsMain">false</ATT>
@@ -11,13 +11,13 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[Activation Box]]></ATT>
+      <ATT name="Name"><![CDATA[Life Time]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedEnd">
         <OBJECT>
-          <ID name="activation Box" mc="Standard.AssociationEnd" uid="add2f768-cebd-4456-a9e7-5d887213ca72"/>
+          <ID name="activationBoxs" mc="Standard.AssociationEnd" uid="e5f910ce-68b2-41e4-b754-1c55943399a8"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -26,20 +26,20 @@
             <ATT name="IsOrdered">false</ATT>
             <ATT name="IsUnique">false</ATT>
             <ATT name="MultiplicityMin"><![CDATA[0]]></ATT>
-            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[*]]></ATT>
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[activation Box]]></ATT>
+            <ATT name="Name"><![CDATA[activationBoxs]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="Activation Box" mc="Standard.Class" uid="4056e725-e2c4-4815-b942-3aec8d302384"/>
+              <ID name="Activation Box" mc="Standard.Class" uid="2b33a7ed-7cc8-4635-840f-2a973ae7c9a4"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="Standard.AssociationEnd" uid="8b605e94-5f5e-4934-be8f-cc8a1b1e9cda"/>
+                <ID name="" mc="Standard.AssociationEnd" uid="acf78ae4-e7a8-4664-b3e0-a530f3ff0678"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -57,11 +57,11 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="activation Box" mc="Standard.AssociationEnd" uid="add2f768-cebd-4456-a9e7-5d887213ca72"/>
+                    <COMPID name="activationBoxs" mc="Standard.AssociationEnd" uid="e5f910ce-68b2-41e4-b754-1c55943399a8"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Standard.Association" uid="2f88de04-cb9f-4a5d-80ce-10daa2e4fadb"/>
+                      <ID name="" mc="Standard.Association" uid="04f1d5ca-acc6-4e46-a1a0-c4dd1e29b61d"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -73,11 +73,30 @@
               </OBJECT>
             </COMP>
             <COMP relation="Association">
-              <COMPID name="" mc="Standard.Association" uid="2f88de04-cb9f-4a5d-80ce-10daa2e4fadb"/>
+              <COMPID name="" mc="Standard.Association" uid="04f1d5ca-acc6-4e46-a1a0-c4dd1e29b61d"/>
             </COMP>
           </DEPENDENCIES>
         </OBJECT>
       </COMP>
+      <COMP relation="Parent">
+        <OBJECT>
+          <ID name="Generalization" mc="Standard.Generalization" uid="f8e2a3f4-1463-45ad-87d6-8ea9ea575247"/>
+          <ATTRIBUTES>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"><![CDATA[Generalization]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="SuperType">
+              <ID name="Caption Image" mc="Standard.Class" uid="4f37141c-be0b-46be-aff6-e238c9a90d4d"/>
+            </LINK>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <LINK relation="Extension">
+        <ID name="BasicRenderElementConverter" mc="Infrastructure.Stereotype" uid="372dbd45-d1f7-4630-af59-f9b7181776a7"/>
+        <ID name="Directive" mc="Infrastructure.Stereotype" uid="d21870ab-cb08-4b1b-9ed6-3fa417c1bdfb"/>
+      </LINK>
     </DEPENDENCIES>
   </OBJECT>
 </EXT>

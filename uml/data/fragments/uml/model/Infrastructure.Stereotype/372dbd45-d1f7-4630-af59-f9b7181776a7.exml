@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="BasicRenderElementConverter" version="4">
+  <OBJECT>
+    <ID name="BasicRenderElementConverter" mc="Infrastructure.Stereotype" uid="372dbd45-d1f7-4630-af59-f9b7181776a7"/>
+    <PID name="Diagram" mc="Infrastructure.Profile" uid="de73ee1b-1a1c-45ac-9c32-14fa074c512e"/>
+    <ATTRIBUTES>
+      <ATT name="Image"><![CDATA[converter48.png]]></ATT>
+      <ATT name="Icon"><![CDATA[converter24.png]]></ATT>
+      <ATT name="IsHidden">false</ATT>
+      <ATT name="IsAbstract">false</ATT>
+      <ATT name="LabelKey"><![CDATA[BasicRenderElementConverter]]></ATT>
+      <ATT name="BaseClassName"><![CDATA[Infrastructure.ModelElement]]></ATT>
+      <ATT name="Name"><![CDATA[BasicRenderElementConverter]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>

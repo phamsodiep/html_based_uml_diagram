@@ -2,7 +2,7 @@
 <!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Client" version="4">
   <OBJECT>
     <ID name="Client" mc="Standard.Actor" uid="c832f2a2-93d2-4af1-8f0d-2538c0dd6e2b"/>
-    <PID name="TA" mc="Standard.Package" uid="aa8233c8-b4f4-434e-8213-79756d793f2e"/>
+    <PID name="AngularJS" mc="Standard.Package" uid="02f1696d-22b7-419f-8d27-d362a60cd4ab"/>
     <ATTRIBUTES>
       <ATT name="IsElementary">false</ATT>
       <ATT name="IsAbstract">false</ATT>

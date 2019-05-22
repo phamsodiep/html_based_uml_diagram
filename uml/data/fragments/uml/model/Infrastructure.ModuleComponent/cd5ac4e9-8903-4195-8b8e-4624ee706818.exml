@@ -16,6 +16,7 @@
       <COMP relation="OwnedProfile">
         <COMPID name="LocalProfile" mc="Infrastructure.Profile" uid="535c795e-7b33-4864-a3b8-e73964249a4e"/>
         <COMPID name="AngularJS" mc="Infrastructure.Profile" uid="569efd3e-07a7-49ae-87fe-f48a1fc34f13"/>
+        <COMPID name="Diagram" mc="Infrastructure.Profile" uid="de73ee1b-1a1c-45ac-9c32-14fa074c512e"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

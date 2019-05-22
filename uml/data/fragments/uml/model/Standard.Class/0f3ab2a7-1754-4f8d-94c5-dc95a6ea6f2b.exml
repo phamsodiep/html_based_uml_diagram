@@ -1,8 +1,8 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Simple Image" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Diagram" version="4">
   <OBJECT>
-    <ID name="Simple Image" mc="Standard.Class" uid="6e88efbf-d240-4f9e-babe-eee932ff3c54"/>
-    <PID name="AngularJS" mc="Standard.Package" uid="02f1696d-22b7-419f-8d27-d362a60cd4ab"/>
+    <ID name="Diagram" mc="Standard.Class" uid="0f3ab2a7-1754-4f8d-94c5-dc95a6ea6f2b"/>
+    <PID name="Renderer" mc="Standard.Package" uid="02f1696d-22b7-419f-8d27-d362a60cd4ab"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
       <ATT name="IsMain">false</ATT>
@@ -11,21 +11,20 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[Simple Image]]></ATT>
+      <ATT name="Name"><![CDATA[Diagram]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
-      <COMP relation="Parent">
+      <COMP relation="Realized">
         <OBJECT>
-          <ID name="Generalization" mc="Standard.Generalization" uid="9db5ce50-91fe-4666-a7fa-8dde78d259cf"/>
+          <ID name="InterfaceRealization" mc="Standard.InterfaceRealization" uid="21ff6812-0561-4731-9684-2dd31b2aeea5"/>
           <ATTRIBUTES>
-            <ATT name="Discriminator"></ATT>
-            <ATT name="Name"><![CDATA[Generalization]]></ATT>
+            <ATT name="Name"><![CDATA[InterfaceRealization]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
-            <LINK relation="SuperType">
-              <ID name="Caption Image" mc="Standard.Class" uid="4f37141c-be0b-46be-aff6-e238c9a90d4d"/>
+            <LINK relation="Implemented">
+              <ID name="Abstract Diagram" mc="Standard.Interface" uid="89474fa2-5828-4145-a77e-10c92cb46b47"/>
             </LINK>
           </DEPENDENCIES>
         </OBJECT>

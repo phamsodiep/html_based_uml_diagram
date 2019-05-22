@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Diagram" version="4">
+  <OBJECT>
+    <ID name="Diagram" mc="Infrastructure.Profile" uid="de73ee1b-1a1c-45ac-9c32-14fa074c512e"/>
+    <PID name="LocalModule" mc="Infrastructure.ModuleComponent" uid="cd5ac4e9-8903-4195-8b8e-4624ee706818"/>
+    <ATTRIBUTES>
+      <ATT name="Name"><![CDATA[Diagram]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES>
+      <COMP relation="DefinedStereotype">
+        <COMPID name="BasicRenderElementConverter" mc="Infrastructure.Stereotype" uid="372dbd45-d1f7-4630-af59-f9b7181776a7"/>
+      </COMP>
+    </DEPENDENCIES>
+  </OBJECT>
+</EXT>
