@@ -67,13 +67,13 @@ def exportLifelineActivationBoxes(model, node):
       toLinks = childNode.getToLinks()
       if len(fromLinks) > len(toLinks):
         fromLink = fromLinks[0]
-        msg["type"] = fromLink.getElement().getSortOfMessage()
+        msg["type"] = fromLink.getElement().getSortOfMessage().getName()
         msg["name"] = fromLink.getName()
         msg["from"] = childNodeUuid
         msg["to"] = fromLink.getTo().getElement().getUuid()
       if len(fromLinks) < len(toLinks):
         toLink = toLinks[0]
-        msg["type"] = toLink.getElement().getSortOfMessage()
+        msg["type"] = toLink.getElement().getSortOfMessage().getName()
         msg["name"] = toLink.getName()
         msg["to"] = childNodeUuid
         msg["from"] = toLink.getFrom().getElement().getUuid()
@@ -146,6 +146,11 @@ def exportSequenceDiagram(diagram):
   dh.close()
   print json.dumps(model)
   #pprint.pprint(model)      # for Debug
+  fileExport = True
+  if fileExport:
+    exportFile = open(diagram.getName() + ".js", "w")
+    exportFile.write(json.dumps(model))
+    exportFile.close()
 
 
 # Test if target selected element is a sequence diagram
