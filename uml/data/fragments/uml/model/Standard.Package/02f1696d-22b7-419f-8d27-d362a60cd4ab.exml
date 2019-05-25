@@ -32,8 +32,9 @@
         <COMPID name="render" mc="Standard.UseCase" uid="0708dd68-ec79-4b4a-a625-7368080762a1"/>
         <COMPID name="Diagram" mc="Standard.Class" uid="0f3ab2a7-1754-4f8d-94c5-dc95a6ea6f2b"/>
         <COMPID name="Life Time" mc="Standard.Class" uid="59f14ab8-4d42-4ab0-8838-58feee0a4b09"/>
-        <COMPID name="Activation Box" mc="Standard.Class" uid="2b33a7ed-7cc8-4635-840f-2a973ae7c9a4"/>
+        <COMPID name="Activation" mc="Standard.Class" uid="2b33a7ed-7cc8-4635-840f-2a973ae7c9a4"/>
         <COMPID name="Message" mc="Standard.Class" uid="158c09a6-b018-489e-9b7f-5c196148d2eb"/>
+        <COMPID name="Activation Box" mc="Standard.Class" uid="3e012a6b-9a00-42f3-a94b-5ff86c02248e"/>
       </COMP>
       <COMP relation="Product">
         <COMPID name="Basic Render Element Classes" mc="Standard.ClassDiagram" uid="be42a8e7-6068-483a-aa16-e69a2b74755f"/>
