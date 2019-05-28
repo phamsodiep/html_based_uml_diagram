@@ -179,6 +179,7 @@ RenderElement.Module.directive("renderElement", function ($compile) {
   const GRAPHICS_CTX_ATT = RenderElement.CONST.GRAPHICS_CTX_ATT;
   let dirScope = {};
   dirScope[DATA_ATT] = ("=" + DATA_ATT);
+  dirScope[GRAPHICS_CTX_ATT] = ("=" + GRAPHICS_CTX_ATT);
 
   return {
     transclude: true,
@@ -319,9 +320,11 @@ RenderElement.Module.directive("renderElement", function ($compile) {
 ////////////////////////////////////////////////////////////////////////////////
 RenderElement.Module.component("diagram", {
   transclude: false,
-  bindings: {
-    model: '='
-  },
+  bindings: JSON.parse([
+    '{',
+      '"', RenderElement.CONST.DATA_ATT, '": "="',
+    '}'
+  ].join("")),
   template: "",
   controller: function ($scope, $element, $compile) {
     let renderBackground = function (ctx, model) {
@@ -490,9 +493,11 @@ RenderElement.Module.component("diagram", {
 ////////////////////////////////////////////////////////////////////////////////
 RenderElement.Module.component('captionImage', {
   transclude: false,
-  bindings: {
-    model: '='
-  },
+  bindings: JSON.parse([
+    '{',
+      '"', RenderElement.CONST.DATA_ATT, '": "="',
+    '}'
+  ].join("")),
   template: "",
   controller: function ($scope, $element, $compile) {
     let verifyDatasourceModel = function (model) {
