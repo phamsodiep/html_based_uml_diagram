@@ -21,9 +21,10 @@ let RenderElement = {};
 
 // Constants
 RenderElement.CONST = {};
-RenderElement.CONST.RE_ATT         = "render-element";
-RenderElement.CONST.DATA_ATT       = "model";
-RenderElement.CONST.MODULENAME     = "diepRenderElement";
+RenderElement.CONST.MODULENAME       = "diepRenderElement";
+RenderElement.CONST.RE_ATT           = "render-element";
+RenderElement.CONST.DATA_ATT         = "model";
+RenderElement.CONST.GRAPHICS_CTX_ATT = "renderer";
 
 // Angular module
 RenderElement.Module = angular.module(RenderElement.CONST.MODULENAME, []);
@@ -171,12 +172,14 @@ RenderElement.util.re.createRETag = function (
 // DIRECTIVE: 'renderElement'                                                 //
 ////////////////////////////////////////////////////////////////////////////////
 RenderElement.Module.directive("renderElement", function ($compile) {
-  const RE_ATT         = RenderElement.CONST.RE_ATT;
-  const RE_ATT_MODEL   = RenderElement.util.tagNameToModelName(RE_ATT);
-  const DATA_ATT       = RenderElement.CONST.DATA_ATT;
-  const REUNIT         = RenderElement.util.re;
+  const RE_ATT           = RenderElement.CONST.RE_ATT;
+  const RE_ATT_MODEL     = RenderElement.util.tagNameToModelName(RE_ATT);
+  const DATA_ATT         = RenderElement.CONST.DATA_ATT;
+  const REUNIT           = RenderElement.util.re;
+  const GRAPHICS_CTX_ATT = RenderElement.CONST.GRAPHICS_CTX_ATT;
   let dirScope = {};
   dirScope[DATA_ATT] = ("=" + DATA_ATT);
+
   return {
     transclude: true,
     restrict: 'A',
@@ -186,6 +189,13 @@ RenderElement.Module.directive("renderElement", function ($compile) {
       let templateStr = "";
       let reClass = $attrs[RE_ATT_MODEL];
       let reModel = $scope[DATA_ATT];
+      let exAtt = "";
+      let ctx = $scope[GRAPHICS_CTX_ATT] 
+      if (typeof ctx === "object"
+        && ctx.constructor.name === "CanvasRenderingContext2D"
+      ) {
+        exAtt = " " + GRAPHICS_CTX_ATT + "=\"" + GRAPHICS_CTX_ATT + "\"";
+      }
       // This re is a Sprite
       // Expanding template to correspondence component basing on spriteClass:
       //   . component model is the isolated scope of renderElement directive
@@ -194,7 +204,7 @@ RenderElement.Module.directive("renderElement", function ($compile) {
         if (typeof spriteClass === "string") {
           let modelAtt = DATA_ATT + ".instance";
           templateStr = [
-            REUNIT.createSpriteTag(spriteClass, modelAtt),
+            REUNIT.createSpriteTag(spriteClass, modelAtt, exAtt),
             REUNIT.createSpriteTag(spriteClass, null, null),
           ].join("");
         }
@@ -219,7 +229,7 @@ RenderElement.Module.directive("renderElement", function ($compile) {
                 DATA_ATT, "[", i, "]"
               ].join("");
               templateStrBuffer.push(
-                REUNIT.createRETag('?', modelAtt),
+                REUNIT.createRETag('?', modelAtt, exAtt),
                 REUNIT.createRETag('?', null, null),
               );
             }
@@ -254,13 +264,13 @@ RenderElement.Module.directive("renderElement", function ($compile) {
                   if (typeof inner === "object") {
                     let modelAtt = [DATA_ATT, "[1]"].join("");
                     nestedDirective = [
-                      REUNIT.createRETag('?', modelAtt),
+                      REUNIT.createRETag('?', modelAtt, exAtt),
                       REUNIT.createRETag('?', null, null),
                     ].join("");
                   }
                 }
                 templateStrBuffer.push(
-                  REUNIT.createSpriteTag(spriteClass, spriteModelAtt),
+                  REUNIT.createSpriteTag(spriteClass, spriteModelAtt, exAtt),
                     nestedDirective,
                   REUNIT.createSpriteTag(spriteClass, null, null)
                 );
@@ -276,21 +286,21 @@ RenderElement.Module.directive("renderElement", function ($compile) {
         // This re is a Sprite
         if (typeof spriteClass === "string") {
           templateStrBuffer.push(
-            REUNIT.createRETag('S', DATA_ATT),
+            REUNIT.createRETag('S', DATA_ATT, exAtt),
             REUNIT.createRETag('S', null, null),
           );
         }
         // This re is a Sprite Group
         else if (Array.isArray(reModel.group)) {
           templateStrBuffer.push(
-            REUNIT.createRETag('G', DATA_ATT + ".group"),
+            REUNIT.createRETag('G', DATA_ATT + ".group", exAtt),
             REUNIT.createRETag('G', null, null),
           );
         }
         // This re is a Sprite Container
         else if (Array.isArray(reModel.container)) {
           templateStrBuffer.push(
-            REUNIT.createRETag('C', DATA_ATT + ".container"),
+            REUNIT.createRETag('C', DATA_ATT + ".container", exAtt),
             REUNIT.createRETag('C', null, null),
           );
         }
