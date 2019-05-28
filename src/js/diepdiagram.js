@@ -1,17 +1,61 @@
-let RenderElement = {};
-RenderElement.Module = angular.module("diepRenderElement", []);
+////////////////////////////////////////////////////////////////////////////////
+//                                                                            //
+//                  GNU GENERAL PUBLIC LICENSE                                //
+//                     Version 3, 29 June 2007                                //
+//                                                                            //
+// Detail license file is hosted at link:                                     //
+//   https://github.com/phamsodiep/html_based_uml_diagram/raw/master/LICENSE  //
+//                                                                            //
+// © phamsodiep - https://github.com/phamsodiep                               //
+//              - https://phamsodiep.blogspot.com                             //
+////////////////////////////////////////////////////////////////////////////////
 
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+// LIBRARY NAMESPACE PACKAGES CREATION                                        //
+////////////////////////////////////////////////////////////////////////////////
+let RenderElement = {};
 
 // Constants
 RenderElement.CONST = {};
 RenderElement.CONST.RE_ATT         = "render-element";
-RenderElement.CONST.RE_ATT_MODEL   = "renderElement";
 RenderElement.CONST.DATA_ATT       = "model";
-RenderElement.CONST.IMPL_CLASS_ATT = "subclass";
+RenderElement.CONST.MODULENAME     = "diepRenderElement";
+
+// Angular module
+RenderElement.Module = angular.module(RenderElement.CONST.MODULENAME, []);
+
+// Helper utility unit and its sub-units
+RenderElement.util    = {};
+RenderElement.util.re = {};
 
 
-// Helper functions
-RenderElement.util = {};
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+// UNIT FUNCTIONS IMPLEMENTATION                                              //
+////////////////////////////////////////////////////////////////////////////////
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Helper utility unit's functions implementation                             //
+////////////////////////////////////////////////////////////////////////////////
+
+// Generic helper functions
+////////////////////////////////////////////////////////////////////////////////
+// Function name: dataModelValidator                                          //
+//                                                                            //
+// Param 'model':                                                             //
+// Param 'expectedTypes':                                                     //
+//                                                                            //
+// Return:                                                                    //
+//   true if model is valid                                                   //
+//   false if model is invalid                                                //
+////////////////////////////////////////////////////////////////////////////////
 RenderElement.util.dataModelValidator = function (model, expectedTypes) {
   for (let key in expectedTypes) {
     let expectedType = expectedTypes[key];
@@ -29,13 +73,108 @@ RenderElement.util.dataModelValidator = function (model, expectedTypes) {
   return true;
 };
 
+////////////////////////////////////////////////////////////////////////////////
+// Function name: tagNameToModelName                                          //
+//                                                                            //
+// Param 'tagName':                                                           //
+//                                                                            //
+// Return:                                                                    //
+////////////////////////////////////////////////////////////////////////////////
+RenderElement.util.tagNameToModelName = function (tagName) {
+  let tagNameChars = tagName.split("");
+  let tagNameCharsCount = tagNameChars.length;
+  let modelNameChars = [];
+  let capRequested = false;
+  for(let i = 0; i < tagNameCharsCount; i++) {
+    let tagNameChar = tagNameChars[i];
+    if (tagNameChar === '-') {
+      capRequested = true;
+    }
+    else {
+      if (capRequested) {
+        capRequested = false;
+        modelNameChars.push(tagNameChar.toUpperCase());
+      }
+      else {
+        modelNameChars.push(tagNameChar);
+      }
+    }
+  }
+  return modelNameChars.join("");
+};
 
-// renderElement directive
+
+// RenderElement unit's helper functions
+////////////////////////////////////////////////////////////////////////////////
+// Function name: createSpriteTag                                             //
+//                                                                            //
+// Param 'spriteClass':                                                       //
+// Param 'modelAtt':                                                          //
+// Param 'exAtt':                                                             //
+//                                                                            //
+// Return:                                                                    //
+////////////////////////////////////////////////////////////////////////////////
+RenderElement.util.re.createSpriteTag = function (
+  spriteClass, modelAtt, exAtt = ""
+) {
+  const DATA_ATT = RenderElement.CONST.DATA_ATT;
+
+  if (exAtt === null) {
+    return ["</", spriteClass, ">"].join("");
+  }
+  return [
+    "<", spriteClass, " ", DATA_ATT, "=\"", modelAtt, "\"",
+      exAtt,
+    ">",
+  ].join("");  
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+// Function name: createRETag                                                 //
+//                                                                            //
+// Param 'reClass':                                                           //
+// Param 'modelAtt':                                                          //
+// Param 'exAtt':                                                             //
+//                                                                            //
+// Return:                                                                    //
+////////////////////////////////////////////////////////////////////////////////
+RenderElement.util.re.createRETag = function (
+    reClass, modelAtt, exAtt = ""
+) {
+  const DATA_ATT = RenderElement.CONST.DATA_ATT;
+  const RE_ATT   = RenderElement.CONST.RE_ATT;
+
+  if (exAtt === null) {
+    return "</div>";
+  }
+  return [
+    "<div ", RE_ATT, "=", reClass, " ",
+      DATA_ATT, "=\"", modelAtt, "\" ",
+      exAtt,
+    ">"
+  ].join("");
+}
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
+// ANGULAR MODULE CONSTRUCTOR FUNCTIONS                                       //
+////////////////////////////////////////////////////////////////////////////////
+
+// Directive constructor functions
+////////////////////////////////////////////////////////////////////////////////
+// DIRECTIVE: 'renderElement'                                                 //
+////////////////////////////////////////////////////////////////////////////////
 RenderElement.Module.directive("renderElement", function ($compile) {
   const RE_ATT         = RenderElement.CONST.RE_ATT;
-  const RE_ATT_MODEL   = RenderElement.CONST.RE_ATT_MODEL;
+  const RE_ATT_MODEL   = RenderElement.util.tagNameToModelName(RE_ATT);
   const DATA_ATT       = RenderElement.CONST.DATA_ATT;
-  const IMPL_CLASS_ATT = RenderElement.CONST.IMPL_CLASS_ATT;
+  const REUNIT         = RenderElement.util.re;
   let dirScope = {};
   dirScope[DATA_ATT] = ("=" + DATA_ATT);
   return {
@@ -51,11 +190,12 @@ RenderElement.Module.directive("renderElement", function ($compile) {
       // Expanding template to correspondence component basing on spriteClass:
       //   . component model is the isolated scope of renderElement directive
       if (reClass === 'S') {
-        let spriteClass = $attrs[IMPL_CLASS_ATT];
+        let spriteClass = reModel["class"];
         if (typeof spriteClass === "string") {
+          let modelAtt = DATA_ATT + ".instance";
           templateStr = [
-            "<", spriteClass, " ", DATA_ATT, "=\"", DATA_ATT, ".instance\">",
-            "</", spriteClass, ">"
+            REUNIT.createSpriteTag(spriteClass, modelAtt),
+            REUNIT.createSpriteTag(spriteClass, null, null),
           ].join("");
         }
       }
@@ -75,11 +215,12 @@ RenderElement.Module.directive("renderElement", function ($compile) {
           for (let i = 0; i < reCount; i++) {
             let re = group[i];
             if (typeof re === "object") {
+              let modelAtt = [
+                DATA_ATT, "[", i, "]"
+              ].join("");
               templateStrBuffer.push(
-                "<div ", RE_ATT, "='?' ",
-                  DATA_ATT, "=\"", DATA_ATT, "[", i, "]", "\"",
-                ">",
-                "</div>"
+                REUNIT.createRETag('?', modelAtt),
+                REUNIT.createRETag('?', null, null),
               );
             }
           }
@@ -99,28 +240,29 @@ RenderElement.Module.directive("renderElement", function ($compile) {
               if (typeof spriteClass === "string") {
                 let modelType = typeof outter.instance;
                 let dataAttributeSetting = "";
+                let spriteModelAtt = "";
                 if (modelType === "object" || modelType === "string") {
                   dataAttributeSetting = [
                     DATA_ATT, "=\"", DATA_ATT, "[0].instance", "\""
                   ].join("");
+
+                  spriteModelAtt = [DATA_ATT, "[0].instance"].join("");
                 }
                 let nestedDirective = "";
                 if (elemCount > 1) {
                   let inner = container[1];
                   if (typeof inner === "object") {
+                    let modelAtt = [DATA_ATT, "[1]"].join("");
                     nestedDirective = [
-                      "<div ", RE_ATT, "='?' ",
-                        DATA_ATT, "=\"", DATA_ATT, "[1]\">",
-                      "</div>"
+                      REUNIT.createRETag('?', modelAtt),
+                      REUNIT.createRETag('?', null, null),
                     ].join("");
                   }
                 }
                 templateStrBuffer.push(
-                  "<", spriteClass, " ",
-                    dataAttributeSetting,
-                  ">",
+                  REUNIT.createSpriteTag(spriteClass, spriteModelAtt),
                     nestedDirective,
-                  "</", spriteClass, ">"
+                  REUNIT.createSpriteTag(spriteClass, null, null)
                 );
               }
             }
@@ -134,29 +276,22 @@ RenderElement.Module.directive("renderElement", function ($compile) {
         // This re is a Sprite
         if (typeof spriteClass === "string") {
           templateStrBuffer.push(
-            "<div ", RE_ATT, "='S' ",
-              IMPL_CLASS_ATT, "='", spriteClass, "'",
-                DATA_ATT, "=\"", DATA_ATT, "\"",
-            ">",
-            "</div>"
+            REUNIT.createRETag('S', DATA_ATT),
+            REUNIT.createRETag('S', null, null),
           );
         }
         // This re is a Sprite Group
         else if (Array.isArray(reModel.group)) {
           templateStrBuffer.push(
-            "<div ", RE_ATT, "='G' ",
-                DATA_ATT, "=\"", DATA_ATT, ".group\"",
-            ">",
-            "</div>"
+            REUNIT.createRETag('G', DATA_ATT + ".group"),
+            REUNIT.createRETag('G', null, null),
           );
         }
         // This re is a Sprite Container
         else if (Array.isArray(reModel.container)) {
           templateStrBuffer.push(
-            "<div ", RE_ATT, "='C' ",
-                DATA_ATT, "=\"", DATA_ATT, ".container\"",
-            ">",
-            "</div>"
+            REUNIT.createRETag('C', DATA_ATT + ".container"),
+            REUNIT.createRETag('C', null, null),
           );
         }
         templateStr = templateStrBuffer.join("");
@@ -168,8 +303,11 @@ RenderElement.Module.directive("renderElement", function ($compile) {
   }
 });
 
-
-RenderElement.Module.component('diagram', {
+// Component constructor functions
+////////////////////////////////////////////////////////////////////////////////
+// COMPONENT: 'diagram'                                                       //
+////////////////////////////////////////////////////////////////////////////////
+RenderElement.Module.component("diagram", {
   transclude: false,
   bindings: {
     model: '='
@@ -337,8 +475,9 @@ RenderElement.Module.component('diagram', {
   }
 });
 
-
-// home controller
+////////////////////////////////////////////////////////////////////////////////
+// COMPONENT: 'captionImage'                                                  //
+////////////////////////////////////////////////////////////////////////////////
 RenderElement.Module.component('captionImage', {
   transclude: false,
   bindings: {
