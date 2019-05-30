@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Life Line" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Lifeline" version="4">
   <OBJECT>
-    <ID name="Life Line" mc="Standard.Class" uid="59f14ab8-4d42-4ab0-8838-58feee0a4b09"/>
+    <ID name="Lifeline" mc="Standard.Class" uid="59f14ab8-4d42-4ab0-8838-58feee0a4b09"/>
     <PID name="Sequence Diagram" mc="Standard.Class" uid="da6ee82b-c373-4a79-9010-3781e01fa6ba"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
@@ -11,7 +11,7 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[Life Line]]></ATT>
+      <ATT name="Name"><![CDATA[Lifeline]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
@@ -78,7 +78,7 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="adaptee" mc="Standard.AssociationEnd" uid="67d99170-4b92-4069-b364-874584568d06"/>
+          <ID name="activationsAdaptee" mc="Standard.AssociationEnd" uid="67d99170-4b92-4069-b364-874584568d06"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -91,7 +91,7 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[adaptee]]></ATT>
+            <ATT name="Name"><![CDATA[activationsAdaptee]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
@@ -118,7 +118,7 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="adaptee" mc="Standard.AssociationEnd" uid="67d99170-4b92-4069-b364-874584568d06"/>
+                    <COMPID name="activationsAdaptee" mc="Standard.AssociationEnd" uid="67d99170-4b92-4069-b364-874584568d06"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
@@ -197,6 +197,20 @@
             <COMP relation="Association">
               <COMPID name="" mc="Standard.Association" uid="b6ba73c8-a48f-419d-9a80-3a6ea8e3087e"/>
             </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+      </COMP>
+      <COMP relation="Realized">
+        <OBJECT>
+          <ID name="InterfaceRealization" mc="Standard.InterfaceRealization" uid="1e3ea3f8-526d-4694-9dc4-138cdb498b48"/>
+          <ATTRIBUTES>
+            <ATT name="Name"><![CDATA[InterfaceRealization]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Implemented">
+              <ID name="Sprite" mc="Standard.Interface" uid="3607ea16-698b-4ca4-ad94-c6d3a807610d"/>
+            </LINK>
           </DEPENDENCIES>
         </OBJECT>
       </COMP>

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
-<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Activation Box" version="4">
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="SequenceDiagramContext" version="4">
   <OBJECT>
-    <ID name="Activation Box" mc="Standard.Class" uid="3e012a6b-9a00-42f3-a94b-5ff86c02248e"/>
+    <ID name="SequenceDiagramContext" mc="Standard.Class" uid="96a8c50e-25c4-43bc-a617-511e199c3c0b"/>
     <PID name="Sequence Diagram" mc="Standard.Class" uid="da6ee82b-c373-4a79-9010-3781e01fa6ba"/>
     <ATTRIBUTES>
       <ATT name="IsActive">false</ATT>
@@ -11,13 +11,13 @@
       <ATT name="IsLeaf">false</ATT>
       <ATT name="IsRoot">false</ATT>
       <ATT name="Visibility">Public</ATT>
-      <ATT name="Name"><![CDATA[Activation Box]]></ATT>
+      <ATT name="Name"><![CDATA[SequenceDiagramContext]]></ATT>
       <ATT name="status">1970354901745664</ATT>
     </ATTRIBUTES>
     <DEPENDENCIES>
       <COMP relation="OwnedEnd">
         <OBJECT>
-          <ID name="adaptee" mc="Standard.AssociationEnd" uid="6fa263aa-7f6b-48b0-88c2-163346729481"/>
+          <ID name="sequenceDiagramContextModel" mc="Standard.AssociationEnd" uid="78c8b06a-b8ab-41d2-96f9-3ac2025d2a28"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -30,16 +30,16 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[adaptee]]></ATT>
+            <ATT name="Name"><![CDATA[sequenceDiagramContextModel]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="Caption Image" mc="Standard.Class" uid="4f37141c-be0b-46be-aff6-e238c9a90d4d"/>
+              <ID name="SequenceDiagramContextModel" mc="Standard.Class" uid="500f2ffe-6df1-4fd6-9cf5-096e02aa7956"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="Standard.AssociationEnd" uid="bfc3cb49-a90e-476a-a529-e659b1e2c81d"/>
+                <ID name="" mc="Standard.AssociationEnd" uid="40f2d3fb-f318-4510-9881-0c3ce1a90b0e"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -57,11 +57,11 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="adaptee" mc="Standard.AssociationEnd" uid="6fa263aa-7f6b-48b0-88c2-163346729481"/>
+                    <COMPID name="sequenceDiagramContextModel" mc="Standard.AssociationEnd" uid="78c8b06a-b8ab-41d2-96f9-3ac2025d2a28"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Standard.Association" uid="7d6bc348-fe6f-4a4c-adf1-72083d199d8c"/>
+                      <ID name="" mc="Standard.Association" uid="1bd7b29a-4c65-47b7-8d7c-7d15160c1f55"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -73,29 +73,26 @@
               </OBJECT>
             </COMP>
             <COMP relation="Association">
-              <COMPID name="" mc="Standard.Association" uid="7d6bc348-fe6f-4a4c-adf1-72083d199d8c"/>
+              <COMPID name="" mc="Standard.Association" uid="1bd7b29a-4c65-47b7-8d7c-7d15160c1f55"/>
             </COMP>
           </DEPENDENCIES>
         </OBJECT>
       </COMP>
-      <COMP relation="Realized">
+      <COMP relation="Parent">
         <OBJECT>
-          <ID name="InterfaceRealization" mc="Standard.InterfaceRealization" uid="c243632d-ed86-454a-9c94-3469dbdc5e2e"/>
+          <ID name="Generalization" mc="Standard.Generalization" uid="37ff93c9-c7f7-46bc-a879-0697b2f4f774"/>
           <ATTRIBUTES>
-            <ATT name="Name"><![CDATA[InterfaceRealization]]></ATT>
+            <ATT name="Discriminator"></ATT>
+            <ATT name="Name"><![CDATA[Generalization]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
-            <LINK relation="Implemented">
-              <ID name="Sprite" mc="Standard.Interface" uid="3607ea16-698b-4ca4-ad94-c6d3a807610d"/>
+            <LINK relation="SuperType">
+              <ID name="DiagramContext" mc="Standard.Class" uid="80dbf688-3a80-4e2f-a47e-83dac81ebb92"/>
             </LINK>
           </DEPENDENCIES>
         </OBJECT>
       </COMP>
-      <LINK relation="Extension">
-        <ID name="BasicRenderElementConverter" mc="Infrastructure.Stereotype" uid="372dbd45-d1f7-4630-af59-f9b7181776a7"/>
-        <ID name="Component" mc="Infrastructure.Stereotype" uid="18236882-8b13-4290-93d9-edbe4006eb19"/>
-      </LINK>
     </DEPENDENCIES>
   </OBJECT>
 </EXT>

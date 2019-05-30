@@ -16,6 +16,7 @@
       <COMP relation="OwnedElement">
         <COMPID name="BA" mc="Standard.Package" uid="752c89ab-cea8-4cf2-9d7f-92d477a28f98"/>
         <COMPID name="TA" mc="Standard.Package" uid="aa8233c8-b4f4-434e-8213-79756d793f2e"/>
+        <COMPID name="Extended Types" mc="Standard.Package" uid="a2458e3e-a9ab-4da3-8e07-dcc4ce036306"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

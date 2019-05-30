@@ -35,7 +35,7 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="Life Line" mc="Standard.Class" uid="59f14ab8-4d42-4ab0-8838-58feee0a4b09"/>
+              <ID name="Lifeline" mc="Standard.Class" uid="59f14ab8-4d42-4ab0-8838-58feee0a4b09"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
@@ -78,7 +78,7 @@
           </DEPENDENCIES>
         </OBJECT>
         <OBJECT>
-          <ID name="adaptee" mc="Standard.AssociationEnd" uid="66817912-aafa-4ec5-a337-5713d901e637"/>
+          <ID name="othersAdaptee" mc="Standard.AssociationEnd" uid="ef486d0b-a655-4a62-972b-79062b01d758"/>
           <ATTRIBUTES>
             <ATT name="Aggregation">KindIsComposition</ATT>
             <ATT name="IsChangeable">true</ATT>
@@ -91,16 +91,16 @@
             <ATT name="Visibility">Public</ATT>
             <ATT name="IsClass">false</ATT>
             <ATT name="IsAbstract">false</ATT>
-            <ATT name="Name"><![CDATA[adaptee]]></ATT>
+            <ATT name="Name"><![CDATA[othersAdaptee]]></ATT>
             <ATT name="status">1970354901745664</ATT>
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Target">
-              <ID name="Diagram" mc="Standard.Class" uid="0f3ab2a7-1754-4f8d-94c5-dc95a6ea6f2b"/>
+              <ID name="Sprite Group" mc="Standard.Class" uid="146d648f-1a18-42b9-bfe4-d768f47c5be1"/>
             </LINK>
             <COMP relation="Opposite">
               <OBJECT>
-                <ID name="" mc="Standard.AssociationEnd" uid="9e5209d2-cbca-4367-b611-54d38a959476"/>
+                <ID name="" mc="Standard.AssociationEnd" uid="e3c6ed2a-58a7-4e36-8323-7a2c7a709a1d"/>
                 <ATTRIBUTES>
                   <ATT name="Aggregation">KindIsAssociation</ATT>
                   <ATT name="IsChangeable">true</ATT>
@@ -118,11 +118,11 @@
                 </ATTRIBUTES>
                 <DEPENDENCIES>
                   <COMP relation="Opposite">
-                    <COMPID name="adaptee" mc="Standard.AssociationEnd" uid="66817912-aafa-4ec5-a337-5713d901e637"/>
+                    <COMPID name="othersAdaptee" mc="Standard.AssociationEnd" uid="ef486d0b-a655-4a62-972b-79062b01d758"/>
                   </COMP>
                   <COMP relation="Association">
                     <OBJECT>
-                      <ID name="" mc="Standard.Association" uid="e249e37a-d319-430d-9718-1fed30184f9b"/>
+                      <ID name="" mc="Standard.Association" uid="8bdf2e7b-b0c4-4fef-8bc1-04e92e2cff94"/>
                       <ATTRIBUTES>
                         <ATT name="Name"></ATT>
                         <ATT name="status">1970354901745664</ATT>
@@ -134,7 +134,190 @@
               </OBJECT>
             </COMP>
             <COMP relation="Association">
-              <COMPID name="" mc="Standard.Association" uid="e249e37a-d319-430d-9718-1fed30184f9b"/>
+              <COMPID name="" mc="Standard.Association" uid="8bdf2e7b-b0c4-4fef-8bc1-04e92e2cff94"/>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="lifelinesAdaptee" mc="Standard.AssociationEnd" uid="7862e41a-4f9d-4144-82a0-86c94fa4ec9a"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsComposition</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[lifelinesAdaptee]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Target">
+              <ID name="Sprite Group" mc="Standard.Class" uid="146d648f-1a18-42b9-bfe4-d768f47c5be1"/>
+            </LINK>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="Standard.AssociationEnd" uid="1c21f054-1dea-48f9-8eea-0e606c40ff84"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="lifelinesAdaptee" mc="Standard.AssociationEnd" uid="7862e41a-4f9d-4144-82a0-86c94fa4ec9a"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Standard.Association" uid="49380b9b-c3c6-4bc4-a4b5-dd7c3ea86530"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <COMPID name="" mc="Standard.Association" uid="49380b9b-c3c6-4bc4-a4b5-dd7c3ea86530"/>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="bgImage" mc="Standard.AssociationEnd" uid="bc5575a4-3ca5-4820-8590-9f0097afc24c"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsComposition</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[bgImage]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Target">
+              <ID name="HTML5 Canvas" mc="Standard.Class" uid="194ea927-6754-4c59-9d2c-8d02917b96b1"/>
+            </LINK>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="Standard.AssociationEnd" uid="8b73f11c-8bae-44bf-928c-445d46a39dd0"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="bgImage" mc="Standard.AssociationEnd" uid="bc5575a4-3ca5-4820-8590-9f0097afc24c"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Standard.Association" uid="73940f40-1ef8-4f85-b747-e084dc326841"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <COMPID name="" mc="Standard.Association" uid="73940f40-1ef8-4f85-b747-e084dc326841"/>
+            </COMP>
+          </DEPENDENCIES>
+        </OBJECT>
+        <OBJECT>
+          <ID name="sequenceDiagramContext" mc="Standard.AssociationEnd" uid="80cc15a4-7f64-4308-8669-152b821a86f4"/>
+          <ATTRIBUTES>
+            <ATT name="Aggregation">KindIsComposition</ATT>
+            <ATT name="IsChangeable">true</ATT>
+            <ATT name="Changeable">ReadWrite</ATT>
+            <ATT name="IsDerived">false</ATT>
+            <ATT name="IsOrdered">false</ATT>
+            <ATT name="IsUnique">false</ATT>
+            <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+            <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+            <ATT name="Visibility">Public</ATT>
+            <ATT name="IsClass">false</ATT>
+            <ATT name="IsAbstract">false</ATT>
+            <ATT name="Name"><![CDATA[sequenceDiagramContext]]></ATT>
+            <ATT name="status">1970354901745664</ATT>
+          </ATTRIBUTES>
+          <DEPENDENCIES>
+            <LINK relation="Target">
+              <ID name="SequenceDiagramContext" mc="Standard.Class" uid="96a8c50e-25c4-43bc-a617-511e199c3c0b"/>
+            </LINK>
+            <COMP relation="Opposite">
+              <OBJECT>
+                <ID name="" mc="Standard.AssociationEnd" uid="fa8da45e-3013-4a03-a2ef-571d74c63416"/>
+                <ATTRIBUTES>
+                  <ATT name="Aggregation">KindIsAssociation</ATT>
+                  <ATT name="IsChangeable">true</ATT>
+                  <ATT name="Changeable">ReadWrite</ATT>
+                  <ATT name="IsDerived">false</ATT>
+                  <ATT name="IsOrdered">false</ATT>
+                  <ATT name="IsUnique">false</ATT>
+                  <ATT name="MultiplicityMin"><![CDATA[1]]></ATT>
+                  <ATT name="MultiplicityMax"><![CDATA[1]]></ATT>
+                  <ATT name="Visibility">Public</ATT>
+                  <ATT name="IsClass">false</ATT>
+                  <ATT name="IsAbstract">false</ATT>
+                  <ATT name="Name"></ATT>
+                  <ATT name="status">1970354901745664</ATT>
+                </ATTRIBUTES>
+                <DEPENDENCIES>
+                  <COMP relation="Opposite">
+                    <COMPID name="sequenceDiagramContext" mc="Standard.AssociationEnd" uid="80cc15a4-7f64-4308-8669-152b821a86f4"/>
+                  </COMP>
+                  <COMP relation="Association">
+                    <OBJECT>
+                      <ID name="" mc="Standard.Association" uid="5efa1e96-946c-4662-af29-bdfa210f74f4"/>
+                      <ATTRIBUTES>
+                        <ATT name="Name"></ATT>
+                        <ATT name="status">1970354901745664</ATT>
+                      </ATTRIBUTES>
+                      <DEPENDENCIES></DEPENDENCIES>
+                    </OBJECT>
+                  </COMP>
+                </DEPENDENCIES>
+              </OBJECT>
+            </COMP>
+            <COMP relation="Association">
+              <COMPID name="" mc="Standard.Association" uid="5efa1e96-946c-4662-af29-bdfa210f74f4"/>
             </COMP>
           </DEPENDENCIES>
         </OBJECT>
@@ -1392,7 +1575,7 @@
           </ATTRIBUTES>
           <DEPENDENCIES>
             <LINK relation="Base">
-              <ID name="Life Line" mc="Standard.Class" uid="59f14ab8-4d42-4ab0-8838-58feee0a4b09"/>
+              <ID name="Lifeline" mc="Standard.Class" uid="59f14ab8-4d42-4ab0-8838-58feee0a4b09"/>
             </LINK>
             <COMP relation="Part">
               <OBJECT>
@@ -2225,19 +2408,23 @@
       </COMP>
       <COMP relation="OwnedElement">
         <COMPID name="Instance" mc="Standard.Class" uid="64d28a6c-1b19-4d4b-9023-998d2e38dbc1"/>
-        <COMPID name="Life Line" mc="Standard.Class" uid="59f14ab8-4d42-4ab0-8838-58feee0a4b09"/>
+        <COMPID name="Lifeline" mc="Standard.Class" uid="59f14ab8-4d42-4ab0-8838-58feee0a4b09"/>
         <COMPID name="Activation" mc="Standard.Class" uid="2b33a7ed-7cc8-4635-840f-2a973ae7c9a4"/>
         <COMPID name="Message" mc="Standard.Class" uid="158c09a6-b018-489e-9b7f-5c196148d2eb"/>
         <COMPID name="Activation Box" mc="Standard.Class" uid="3e012a6b-9a00-42f3-a94b-5ff86c02248e"/>
+        <COMPID name="Graphics" mc="Standard.Class" uid="5ddcfb9c-1fc3-4398-a0c7-4a2e1c521491"/>
+        <COMPID name="SequenceDiagramContextModel" mc="Standard.Class" uid="500f2ffe-6df1-4fd6-9cf5-096e02aa7956"/>
+        <COMPID name="SequenceDiagramContext" mc="Standard.Class" uid="96a8c50e-25c4-43bc-a617-511e199c3c0b"/>
+        <COMPID name="DiagramContext" mc="Standard.Class" uid="80dbf688-3a80-4e2f-a47e-83dac81ebb92"/>
       </COMP>
       <LINK relation="Extension">
-        <ID name="BasicRenderElementConverter" mc="Infrastructure.Stereotype" uid="372dbd45-d1f7-4630-af59-f9b7181776a7"/>
         <ID name="Component" mc="Infrastructure.Stereotype" uid="18236882-8b13-4290-93d9-edbe4006eb19"/>
       </LINK>
       <COMP relation="Product">
         <COMPID name="Sequence Diagram Example 01" mc="Standard.ObjectDiagram" uid="cf156df9-624f-4bd0-ac72-6419fb993dcb"/>
         <COMPID name="Sequence Diagram Classes" mc="Standard.ClassDiagram" uid="602c6def-e96b-413c-afe7-fd3b664e6a61"/>
         <COMPID name="Sequence Diagram Composite Structure diagram" mc="Standard.CompositeStructureDiagram" uid="4ada40a1-7b6f-4e26-a0f6-9275db3340d0"/>
+        <COMPID name="Sequence Diagram Classes New" mc="Standard.ClassDiagram" uid="a63d8240-42be-4363-9ca1-ecdcd3891e25"/>
       </COMP>
     </DEPENDENCIES>
   </OBJECT>

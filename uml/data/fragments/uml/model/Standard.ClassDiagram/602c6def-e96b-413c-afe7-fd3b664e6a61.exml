@@ -115,12 +115,6 @@
         </REFOBJ>
         <ID name="Activation Box" mc="Standard.Class" uid="3e012a6b-9a00-42f3-a94b-5ff86c02248e"/>
         <REFOBJ>
-          <ID name="" mc="Standard.AssociationEnd" uid="9e5209d2-cbca-4367-b611-54d38a959476"/>
-        </REFOBJ>
-        <REFOBJ>
-          <ID name="adaptee" mc="Standard.AssociationEnd" uid="66817912-aafa-4ec5-a337-5713d901e637"/>
-        </REFOBJ>
-        <REFOBJ>
           <ID name="adaptee" mc="Standard.AssociationEnd" uid="67d99170-4b92-4069-b364-874584568d06"/>
         </REFOBJ>
         <REFOBJ>
