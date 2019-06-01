@@ -1,0 +1,17 @@
+<?xml version="1.0" ?>
+<!--GENERATED FILE, PLEASE DO NOT EDIT!!!--><EXT object="Model Element" version="4">
+  <OBJECT>
+    <ID name="Model Element" mc="Standard.Interface" uid="44c471e2-81c4-41bf-afed-c1e91a2b6280"/>
+    <PID name="Sequence Diagram" mc="Standard.Package" uid="0e407d0d-89b5-417e-9ab2-ab50b63d211d"/>
+    <ATTRIBUTES>
+      <ATT name="IsElementary">false</ATT>
+      <ATT name="IsAbstract">true</ATT>
+      <ATT name="IsLeaf">false</ATT>
+      <ATT name="IsRoot">false</ATT>
+      <ATT name="Visibility">Public</ATT>
+      <ATT name="Name"><![CDATA[Model Element]]></ATT>
+      <ATT name="status">1970354901745664</ATT>
+    </ATTRIBUTES>
+    <DEPENDENCIES></DEPENDENCIES>
+  </OBJECT>
+</EXT>
