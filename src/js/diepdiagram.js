@@ -17,47 +17,71 @@
 ////////////////////////////////////////////////////////////////////////////////
 // LIBRARY NAMESPACE PACKAGES CREATION                                        //
 ////////////////////////////////////////////////////////////////////////////////
-let RenderElement = {};
+let Diep               = {};
+Diep.Common            = {};
+Diep.Common.util       = {};
+Diep.Common.util.model = {};
+Diep.Common.util.lang  = {};
+
+
+Diep.Renderer = {};
 
 // Constants
-RenderElement.CONST = {};
-RenderElement.CONST.MODULENAME       = "diepRenderElement";
-RenderElement.CONST.RE_ATT           = "render-element";
-RenderElement.CONST.DATA_ATT         = "model";
-RenderElement.CONST.GRAPHICS_CTX_ATT = "renderer";
+Diep.Renderer.CONST = {};
+Diep.Renderer.CONST.MODULENAME       = "diepRenderElement";
+Diep.Renderer.CONST.RE_ATT           = "render-element";
+Diep.Renderer.CONST.DATA_ATT         = "model";
+Diep.Renderer.CONST.DIAGRAM_CTX_ATT  = "context";
 
 // Angular module
-RenderElement.Module = angular.module(RenderElement.CONST.MODULENAME, []);
+Diep.Renderer.Module = angular.module(Diep.Renderer.CONST.MODULENAME, []);
 
 // Helper utility unit and its sub-units
-RenderElement.util    = {};
-RenderElement.util.re = {};
+Diep.Renderer.util       = {};
+Diep.Renderer.util.model = {};
+Diep.Renderer.util.re    = {};
 
 
 
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// UNIT FUNCTIONS IMPLEMENTATION                                              //
+// IMPLEMENTATION                                                             //
 ////////////////////////////////////////////////////////////////////////////////
 
-
 ////////////////////////////////////////////////////////////////////////////////
-// Helper utility unit's functions implementation                             //
+// Helper functions implementation                                            //
 ////////////////////////////////////////////////////////////////////////////////
+Diep.Common.util.lang.extendsClass = function (subClass, parentClass) {
+  subClass.prototype = Object.create(parentClass.prototype);
+  subClass.prototype.constructor = subClass;
+  return subClass;
+};
 
-// Generic helper functions
+Diep.Common.util.model.propToJsonStr = function (key, value, sep = '') {
+  return [
+    '"', key, '": "', value, '"', sep
+  ].join("");
+}
+
+
 ////////////////////////////////////////////////////////////////////////////////
 // Function name: dataModelValidator                                          //
+// Brief:         test if 'model' has fields with valid type which specified  //
+//                in exptectedTypes                                           //
 //                                                                            //
-// Param 'model':                                                             //
-// Param 'expectedTypes':                                                     //
+// Param 'model':          target tested model                                //
+// Param 'expectedTypes':  an object with required fields and its expected    //
+//                         type.                                              //
 //                                                                            //
 // Return:                                                                    //
 //   true if model is valid                                                   //
 //   false if model is invalid                                                //
+//                                                                            //
+// Note:                                                                      //
+//   '*':         used to represented Array type.                             //
 ////////////////////////////////////////////////////////////////////////////////
-RenderElement.util.dataModelValidator = function (model, expectedTypes) {
+Diep.Renderer.util.model.dataModelValidator = function (model, expectedTypes) {
   for (let key in expectedTypes) {
     let expectedType = expectedTypes[key];
     if (expectedType === "*") {
@@ -81,7 +105,7 @@ RenderElement.util.dataModelValidator = function (model, expectedTypes) {
 //                                                                            //
 // Return:                                                                    //
 ////////////////////////////////////////////////////////////////////////////////
-RenderElement.util.tagNameToModelName = function (tagName) {
+Diep.Renderer.util.model.tagNameToModelName = function (tagName) {
   let tagNameChars = tagName.split("");
   let tagNameCharsCount = tagNameChars.length;
   let modelNameChars = [];
@@ -105,7 +129,6 @@ RenderElement.util.tagNameToModelName = function (tagName) {
 };
 
 
-// RenderElement unit's helper functions
 ////////////////////////////////////////////////////////////////////////////////
 // Function name: createSpriteTag                                             //
 //                                                                            //
@@ -115,10 +138,10 @@ RenderElement.util.tagNameToModelName = function (tagName) {
 //                                                                            //
 // Return:                                                                    //
 ////////////////////////////////////////////////////////////////////////////////
-RenderElement.util.re.createSpriteTag = function (
+Diep.Renderer.util.re.createSpriteTag = function (
   spriteClass, modelAtt, exAtt = ""
 ) {
-  const DATA_ATT = RenderElement.CONST.DATA_ATT;
+  const DATA_ATT = Diep.Renderer.CONST.DATA_ATT;
 
   if (exAtt === null) {
     return ["</", spriteClass, ">"].join("");
@@ -140,66 +163,134 @@ RenderElement.util.re.createSpriteTag = function (
 //                                                                            //
 // Return:                                                                    //
 ////////////////////////////////////////////////////////////////////////////////
-RenderElement.util.re.createRETag = function (
+Diep.Renderer.util.re.createRETag = function (
     reClass, modelAtt, exAtt = ""
 ) {
-  const DATA_ATT = RenderElement.CONST.DATA_ATT;
-  const RE_ATT   = RenderElement.CONST.RE_ATT;
+  const DATA_ATT = Diep.Renderer.CONST.DATA_ATT;
+  const RE_ATT   = Diep.Renderer.CONST.RE_ATT;
 
   if (exAtt === null) {
     return "</div>";
   }
   return [
-    "<div ", RE_ATT, "=", reClass, " ",
+    "<div ", RE_ATT, "='", reClass, "' ",
       DATA_ATT, "=\"", modelAtt, "\" ",
       exAtt,
     ">"
   ].join("");
 }
 
+////////////////////////////////////////////////////////////////////////////////
+// Function name: putIntoPlace                                                //
+//                                                                            //
+// Param 'targetCss':                                                         //
+// Param 'dataModel':                                                         //
+//                                                                            //
+// Return:                                                                    //
+////////////////////////////////////////////////////////////////////////////////
+Diep.Renderer.util.re.putIntoPlace = function (targetCss, dataModel) {
+  targetCss.position = "absolute";
+  targetCss.left     = dataModel.left   + "px";
+  targetCss.top      = dataModel.top    + "px";
+  targetCss.width    = dataModel.width  + "px";
+  targetCss.height   = dataModel.height + "px";
+}
 
+////////////////////////////////////////////////////////////////////////////////
+// Function name: applyDefaultBorder                                          //
+//                                                                            //
+// Param 'targetCss':                                                         //
+//                                                                            //
+// Return:                                                                    //
+////////////////////////////////////////////////////////////////////////////////
+Diep.Renderer.util.re.applyDefaultBorder = function (targetCss) {
+  targetCss.borderWidth = "0px";
+  targetCss.borderStyle = "none";
+  targetCss.margin      = "0px 0px 0px 0px";
+}
 
+////////////////////////////////////////////////////////////////////////////////
+// Function name: applyDefaultWrapDiv                                         //
+//                                                                            //
+// Param 'targetCss':                                                         //
+// Param 'width':                                                             //
+// Param 'height':                                                            //
+//                                                                            //
+// Return:                                                                    //
+////////////////////////////////////////////////////////////////////////////////
+Diep.Renderer.util.re.applyDefaultWrapDiv = function (
+  targetCss, width, height
+) {
+  targetCss.position = "relative";
+  targetCss.width    = width + "px";
+  targetCss.height   = height + "px";
+}
 
+////////////////////////////////////////////////////////////////////////////////
+// Function name: applyDefaultBgDiv                                          //
+//                                                                            //
+// Param 'targetCss':                                                         //
+//                                                                            //
+// Return:                                                                    //
+////////////////////////////////////////////////////////////////////////////////
+Diep.Renderer.util.re.applyDefaultBgDiv = function (targetCss) {
+  targetCss.position = "absolute";
+  targetCss.zIndex   = -1;
 
+}
+
+////////////////////////////////////////////////////////////////////////////////
+// Function name: applyDefaultFgDiv                                          //
+//                                                                            //
+// Param 'targetCss':                                                         //
+//                                                                            //
+// Return:                                                                    //
+////////////////////////////////////////////////////////////////////////////////
+Diep.Renderer.util.re.applyDefaultFgDiv = function (targetCss) {
+  targetCss.position = "absolute";
+}
 
 
 ////////////////////////////////////////////////////////////////////////////////
-// ANGULAR MODULE CONSTRUCTOR FUNCTIONS                                       //
+// Angular module constructor functions                                       //
 ////////////////////////////////////////////////////////////////////////////////
+
 
 // Directive constructor functions
 ////////////////////////////////////////////////////////////////////////////////
 // DIRECTIVE: 'renderElement'                                                 //
 ////////////////////////////////////////////////////////////////////////////////
-RenderElement.Module.directive("renderElement", function ($compile) {
-  const RE_ATT           = RenderElement.CONST.RE_ATT;
-  const RE_ATT_MODEL     = RenderElement.util.tagNameToModelName(RE_ATT);
-  const DATA_ATT         = RenderElement.CONST.DATA_ATT;
-  const REUNIT           = RenderElement.util.re;
-  const GRAPHICS_CTX_ATT = RenderElement.CONST.GRAPHICS_CTX_ATT;
-  let dirScope = {};
-  dirScope[DATA_ATT] = ("=" + DATA_ATT);
-  dirScope[GRAPHICS_CTX_ATT] = ("=" + GRAPHICS_CTX_ATT);
-
+Diep.Renderer.Module.directive("renderElement", function ($compile) {
+  const RE_ATT          = Diep.Renderer.CONST.RE_ATT;
+  const RE_ATT_MODEL    = Diep.Renderer.util.model.tagNameToModelName(RE_ATT);
+  const DATA_ATT        = Diep.Renderer.CONST.DATA_ATT;
+  const REUNIT          = Diep.Renderer.util.re;
+  const DIAGRAM_CTX_ATT = Diep.Renderer.CONST.DIAGRAM_CTX_ATT;
+  let   propToJsonStr   = Diep.Common.util.model.propToJsonStr;
   return {
     transclude: true,
     restrict: 'A',
-    scope: dirScope,
+    scope: JSON.parse([
+        '{',
+          propToJsonStr(DATA_ATT, "=" + DATA_ATT, ','),
+          propToJsonStr(DIAGRAM_CTX_ATT, "=" + DIAGRAM_CTX_ATT),
+        '}'
+      ].join("")),
     template: "",
     link: function ($scope, $elem, $attrs, $outercontrol) {
       let templateStr = "";
       let reClass = $attrs[RE_ATT_MODEL];
       let reModel = $scope[DATA_ATT];
       let exAtt = "";
-      let ctx = $scope[GRAPHICS_CTX_ATT] 
+      let ctx = $scope[DIAGRAM_CTX_ATT] 
       if (typeof ctx === "object"
-        && ctx.constructor.name === "CanvasRenderingContext2D"
+        && ctx.constructor.name === "SequenceDiagramContext"
       ) {
-        exAtt = " " + GRAPHICS_CTX_ATT + "=\"" + GRAPHICS_CTX_ATT + "\"";
+        exAtt = " " + DIAGRAM_CTX_ATT + "=\"" + DIAGRAM_CTX_ATT + "\"";
       }
       // This re is a Sprite
       // Expanding template to correspondence component basing on spriteClass:
-      //   . component model is the isolated scope of renderElement directive
+      //   . component model is the isolated scope of Diep.Renderer directive
       if (reClass === 'S') {
         let spriteClass = reModel["class"];
         if (typeof spriteClass === "string") {
@@ -212,8 +303,8 @@ RenderElement.Module.directive("renderElement", function ($compile) {
       }
       // This re is a Sprite Group
       // Expanding template by traveling group elements. This results
-      //   . Expanded template is a collection of renderElement directives
-      //   . element's renderElement directive isolcated scope is the 
+      //   . Expanded template is a collection of Diep.Renderer directives
+      //   . element's Diep.Renderer directive isolcated scope is the 
       //     array element of isolated scope of this directive
       //        this directive's isolated scope: model
       //        array element of the scope: model[i]
@@ -256,7 +347,6 @@ RenderElement.Module.directive("renderElement", function ($compile) {
                   dataAttributeSetting = [
                     DATA_ATT, "=\"", DATA_ATT, "[0].instance", "\""
                   ].join("");
-
                   spriteModelAtt = [DATA_ATT, "[0].instance"].join("");
                 }
                 let nestedDirective = "";
@@ -314,15 +404,16 @@ RenderElement.Module.directive("renderElement", function ($compile) {
   }
 });
 
+
 // Component constructor functions
 ////////////////////////////////////////////////////////////////////////////////
 // COMPONENT: 'diagram'                                                       //
 ////////////////////////////////////////////////////////////////////////////////
-RenderElement.Module.component("diagram", {
+Diep.Renderer.Module.component("diagram", {
   transclude: false,
   bindings: JSON.parse([
     '{',
-      '"', RenderElement.CONST.DATA_ATT, '": "="',
+      Diep.Common.util.model.propToJsonStr(Diep.Renderer.CONST.DATA_ATT, "="),
     '}'
   ].join("")),
   template: "",
@@ -386,9 +477,6 @@ RenderElement.Module.component("diagram", {
         }
       };
       dataModelTravel(model, elementBackgroundRenderCallBackFunc);
-      // Do rendering
-      // ctx.fillStyle = "#eeeeee";
-      // ctx.fillRect(0, 0, 120, 120);
     };
     let verifyDatasourceModel = function (model) {
       if (typeof model === "undefined") {
@@ -403,10 +491,8 @@ RenderElement.Module.component("diagram", {
         "container": "*",
         "class":     "string"
       };
-      for (let key in validTypes) {
-        if (!(typeof model[key] === validTypes[key])) {
-          return false;
-        }
+      if (!Diep.Renderer.util.model.dataModelValidator(model, validTypes)) {
+        return false;
       }
       let isImplemented = false;
       for (let key in reSubClassTypes) {
@@ -430,8 +516,8 @@ RenderElement.Module.component("diagram", {
       if (!verifyDatasourceModel(this.model)) {
         throw "Diagram data model format is invalid.";
       }
-      const RE_ATT         = RenderElement.CONST.RE_ATT;
-      const DATA_ATT       = RenderElement.CONST.DATA_ATT;
+      const RE_ATT         = Diep.Renderer.CONST.RE_ATT;
+      const DATA_ATT       = Diep.Renderer.CONST.DATA_ATT;
       let templateStr = [
         "<div ng-style='{{$ctrl.wrapDivCss}}'>",
             "<div ng-style='{{$ctrl.bgDivCss}}'>",
@@ -446,21 +532,14 @@ RenderElement.Module.component("diagram", {
 
       // CSS
       // wrap div: position: relative
-      this.wrapDivCss = {
-        "position": "relative",
-        "width":    this.model.width + "px",
-        "height":    this.model.height + "px"
-      };
-      // background div: position: absolute
-      this.bgDivCss = {
-        "position": "absolute",
-        "z-index": "-1"
-      };
-
-      this.fgDivCss = {
-        "position": "absolute"
-      };
-
+      this.wrapDivCss = {};
+      this.bgDivCss = {};
+      this.fgDivCss = {};
+      Diep.Renderer.util.re.applyDefaultWrapDiv(
+        this.wrapDivCss, this.model.width, this.model.height
+      );
+      Diep.Renderer.util.re.applyDefaultBgDiv(this.bgDivCss);
+      Diep.Renderer.util.re.applyDefaultFgDiv(this.fgDivCss);
 
       // DOM
       let $templateRootElem = $compile(templateStr)($scope);
@@ -482,7 +561,6 @@ RenderElement.Module.component("diagram", {
             renderBackground(ctx, this.model);
           }
         }
-        //let foregroundCanvasElem = templateRootElem.lastElementChild;
       }
     }
   }
@@ -491,11 +569,11 @@ RenderElement.Module.component("diagram", {
 ////////////////////////////////////////////////////////////////////////////////
 // COMPONENT: 'captionImage'                                                  //
 ////////////////////////////////////////////////////////////////////////////////
-RenderElement.Module.component('captionImage', {
+Diep.Renderer.Module.component('captionImage', {
   transclude: false,
   bindings: JSON.parse([
     '{',
-      '"', RenderElement.CONST.DATA_ATT, '": "="',
+      Diep.Common.util.model.propToJsonStr(Diep.Renderer.CONST.DATA_ATT, "="),
     '}'
   ].join("")),
   template: "",
@@ -511,7 +589,7 @@ RenderElement.Module.component('captionImage', {
         "height":     "number",
         "renderCmds": "*",
       };
-      if (RenderElement.util.dataModelValidator(model, validTypes)) {
+      if (Diep.Renderer.util.model.dataModelValidator(model, validTypes)) {
         if (model.renderCmds.length > 0) {
           let htmlTransformation = model.renderCmds[0];
           let paramsCount = htmlTransformation.length;
@@ -538,19 +616,17 @@ RenderElement.Module.component('captionImage', {
       let $templateRootElem = $compile(templateStr)($scope);
       $element.append($templateRootElem);
       let templateRootElem = angular.element($templateRootElem)[0];
-      templateRootElem.style.position = "absolute";
-      templateRootElem.style.left     =
-        this.model.left + htmlRenderCmd[1] + "px";
-      templateRootElem.style.top      =
-        this.model.top + htmlRenderCmd[2] + "px";
 
-      // width height should be adjust with borderWidth
-      templateRootElem.style.width    = htmlRenderCmd[3]  + "px";
-      templateRootElem.style.height   = htmlRenderCmd[4] + "px";
-      templateRootElem.style.borderWidth = "0px";
-      templateRootElem.style.borderStyle = "none";
-      templateRootElem.style.margin = "0px 0px 0px 0px";
-
+      Diep.Renderer.util.re.putIntoPlace(
+        templateRootElem.style,
+        {
+          left:   this.model.left + htmlRenderCmd[1],
+          top:    this.model.top + htmlRenderCmd[2],
+          width:  htmlRenderCmd[3],
+          height: htmlRenderCmd[4]
+        }
+      );
+      Diep.Renderer.util.re.applyDefaultBorder(templateRootElem.style);
     }
   }
 });
